@@ -6,11 +6,10 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using System.Globalization;
-using System.Net.Security;
 
-namespace SitefinityUpdater.Helpers
+namespace SitefinityContentUpdater.Core.Helpers
 {
-    internal class ContentProcessor
+    public class ContentProcessor
     {
         private readonly IRestClient _client;
         private readonly HtmlParser _parser;
@@ -205,7 +204,7 @@ namespace SitefinityUpdater.Helpers
             var match = Regex.Match(src, pattern);
             if (match.Success)
             {
-                return Guid.Parse(match.Groups[1].Value); // "1eb77cf8-a54a-471b-917b-818adef56ce7"
+                return Guid.Parse(match.Groups[1].Value);
             }
 
             return null;
@@ -345,19 +344,19 @@ namespace SitefinityUpdater.Helpers
         }
     }
 
-    internal class ProcessingResult
+    public class ProcessingResult
     {
         public int ProcessedCount { get; set; }
         public int UpdatedCount { get; set; }
     }
 
-    internal class ImgDetail
+    public class ImgDetail
     {
         public string Title { get; set; }
         public Guid? Id { get; set; }
     }
 
-    internal class ImageMapping
+    public class ImageMapping
     {
         [Name("Image Title")]
         public string ImageTitle { get; set; }

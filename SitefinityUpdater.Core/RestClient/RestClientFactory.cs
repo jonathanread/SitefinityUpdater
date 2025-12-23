@@ -1,16 +1,10 @@
-﻿using Progress.Sitefinity.RestSdk;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+using Progress.Sitefinity.RestSdk;
 
-namespace SitefinityUpdater.RestClient
+namespace SitefinityContentUpdater.Core.RestClient
 {
-    internal class RestClientFactory
+    public class RestClientFactory
     {
-        internal static async Task<IRestClient> GetRestClient(SitefinityConfig config)
+        public static async Task<IRestClient> GetRestClient(SitefinityConfig config)
         {
             if(config == null)
             {
@@ -19,11 +13,8 @@ namespace SitefinityUpdater.RestClient
 
             config.Url = config.Url.EndsWith('/') ? config.Url : config.Url + "/";
 
-            // create the http client that holds the Bearer Token
             var httpClient = await CreateClient(config);
-            // create the RestClient that is resposible for creating the items in the CMS
             var restClient = new Progress.Sitefinity.RestSdk.Client.RestClient(httpClient);
-            // initialize the client
             await restClient.Init(new RequestArgs() { AdditionalQueryParams = new Dictionary<string, string> { { "sf_site", config.SiteId.ToString() } } });
             return restClient;
         }
