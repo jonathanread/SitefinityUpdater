@@ -5,6 +5,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>SitefinityContentUpdater</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,12 +17,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SitefinityUpdater.Core\SitefinityContentUpdater.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="image_mappings_20251214_073902.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="RestClient\" />
   </ItemGroup>
 
 </Project>
