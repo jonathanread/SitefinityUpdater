@@ -1,6 +1,6 @@
-namespace SitefinityUpdater.Helpers
+namespace SitefinityContentUpdater.Core.Helpers
 {
-    internal static class ConsoleHelper
+    public static class ConsoleHelper
     {
         public static void WriteSuccess(string message)
         {

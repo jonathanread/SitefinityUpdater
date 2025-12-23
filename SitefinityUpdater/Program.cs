@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Progress.Sitefinity.RestSdk;
-using SitefinityUpdater.Helpers;
-using SitefinityUpdater.RestClient;
+using SitefinityContentUpdater.Core.Helpers;
+using SitefinityContentUpdater.Core.RestClient;
 
 internal class Program
 {
