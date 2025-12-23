@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Configuration;
-using SitefinityUpdater.RestClient;
+using SitefinityContentUpdater.Core.RestClient;
 
-namespace SitefinityUpdater.Helpers
+namespace SitefinityContentUpdater.Core.Helpers
 {
-    internal class ConfigurationHelper
+    public class ConfigurationHelper
     {
         public static IConfiguration LoadConfiguration()
         {

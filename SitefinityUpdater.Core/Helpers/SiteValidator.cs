@@ -1,9 +1,9 @@
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Dto;
 
-namespace SitefinityUpdater.Helpers
+namespace SitefinityContentUpdater.Core.Helpers
 {
-    internal class SiteValidator
+    public class SiteValidator
     {
         public static async Task<SiteValidationResult> ValidateAndConfirmSiteAsync(IRestClient client, Guid currentSiteId)
         {
@@ -37,7 +37,7 @@ namespace SitefinityUpdater.Helpers
         }
     }
 
-    internal class SiteValidationResult
+    public class SiteValidationResult
     {
         public bool IsValid { get; set; }
         public Guid SiteId { get; set; }
