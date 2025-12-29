@@ -23,9 +23,5 @@ jobs:
       - name: Create test summary
         uses: test-summary/action@dist
         with:
-          paths: results/**/*.xml
+          paths: results/*.xml
         if: always()
-    
-      - uses: test-summary/action@v2
-        with:
-         paths: "results/**/*.xml"
