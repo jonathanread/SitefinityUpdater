@@ -28,13 +28,11 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
-    - name: Run tests
-      run: dotnet test --configuration Release --no-build --logger trx
-      # The '--logger trx' generates test results in the TRX format
+    - name: Run tests and generate report
+      run: dotnet test --no-build --logger "trx;LogFileName=testresults.trx"
 
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
+    - name: Publish Test Summary
+      uses: test-summary/action@v2
       with:
-        name: test-results
-        path: '**/*.trx' # Path to the generated TRX files
-        retention-days: 5
+        paths: "**/testresults.trx"
+      if: always()
