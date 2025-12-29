@@ -1,4 +1,4 @@
-![Workflow Status](https://github.com/OWNER/REPOSITORY/actions/workflows/WORKFLOW-FILE/badge.svg)
+![Workflow Status](https://github.com/jonathanread/SitefinityUpdater/actions/workflows/dotnet-desktop/badge.svg)
 
 # Sitefinity Content Updater
 
