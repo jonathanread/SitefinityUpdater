@@ -84,20 +84,19 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var originalOut = Console.Out;
             var originalIn = Console.In;
+            
+            var sw = new StringWriter();
+            var sr = new StringReader("\n\n\n\n");
+            
             try
             {
-                var inMemorySettings = new Dictionary<string, string>();
-
-                IConfiguration configuration = new ConfigurationBuilder()
-                    .AddInMemoryCollection(inMemorySettings)
-                    .Build();
-
-                using var sw = new StringWriter();
-                using var sr = new StringReader("\n\n\n\n");
                 Console.SetOut(sw);
                 Console.SetIn(sr);
 
-                Func<Task> act = async () => await ConfigurationHelper.GetSitefinityConfigAsync(configuration);
+                Func<Task> act = async () => await ConfigurationHelper.GetSitefinityConfigAsync(
+                    new ConfigurationBuilder()
+                        .AddInMemoryCollection(new Dictionary<string, string>())
+                        .Build());
 
                 await act.Should().ThrowAsync<InvalidOperationException>()
                     .WithMessage("Required configuration missing");
@@ -106,6 +105,8 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             {
                 Console.SetOut(originalOut);
                 Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
             }
         }
 

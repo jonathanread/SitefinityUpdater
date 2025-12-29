@@ -1,4 +1,4 @@
-![Workflow Status](https://github.com/jonathanread/SitefinityUpdater/actions/workflows/dotnet-desktop/badge.svg)
+[![.NET Desktop CI](https://github.com/jonathanread/SitefinityUpdater/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/jonathanread/SitefinityUpdater/actions/workflows/dotnet-desktop.yml)
 
 # Sitefinity Content Updater
 
