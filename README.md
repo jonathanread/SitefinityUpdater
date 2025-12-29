@@ -1,3 +1,5 @@
+![Workflow Status](https://github.com/OWNER/REPOSITORY/actions/workflows/WORKFLOW-FILE/badge.svg)
+
 # Sitefinity Content Updater
 
 A .NET 9 console application for batch updating rich text content fields in Sitefinity CMS, with specialized support for migrating and updating image references using CSV-based ID mapping.
