@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Helpers\**" />
+    <Compile Remove="RestClient\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <EmbeddedResource Remove="RestClient\**" />
+    <None Remove="Helpers\**" />
+    <None Remove="RestClient\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.4.0" />
     <PackageReference Include="CsvHelper" Version="33.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
@@ -27,11 +36,6 @@
     <None Update="image_mappings_20251214_073902.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-    <Folder Include="RestClient\" />
   </ItemGroup>
 
 </Project>
