@@ -35,5 +35,5 @@ jobs:
     - name: Publish Test Summary
       uses: test-summary/action@v2
       with:
-        paths: "**/test-results.trx"
+        paths: "**/*.trx"
       if: always()
