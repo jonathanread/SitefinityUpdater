@@ -25,3 +25,7 @@ jobs:
         with:
           paths: results/**/*.xml
         if: always()
+    
+      - uses: test-summary/action@v2
+        with:
+         paths: "results/**/*.xml"
