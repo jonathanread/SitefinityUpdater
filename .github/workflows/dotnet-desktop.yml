@@ -28,11 +28,12 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
-    - name: Run tests and generate report
-      run: dotnet test --no-build --logger "trx;LogFileName=testresults.trx"
+    - name: Run tests
+      run: dotnet test --configuration Release --no-build --logger trx
+      # The '--logger trx' generates test results in the TRX format
 
     - name: Publish Test Summary
       uses: test-summary/action@v2
       with:
-        paths: "**/testresults.trx"
+        paths: "**/*.trx"
       if: always()
