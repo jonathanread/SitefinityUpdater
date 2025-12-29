@@ -9,31 +9,19 @@ on:
 jobs:
   build:
     # Use a Windows runner as desktop apps are typically Windows-specific
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0 # Get all history for accurate versioning/testing
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    # Set up the appropriate .NET SDK version (e.g., 8.x)
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '9.x' 
+      - name: Build and test
+        run: |
+          dotnet build
+          dotnet test --logger "junit;LogFilePath=results/tests.xml"
 
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-
-    - name: Run tests
-      run: dotnet test --logger "trx;LogFileName=test-results.trx"
-      # The '--logger trx' generates test results in the TRX format
-
-    - name: Publish Test Summary
-      uses: test-summary/action@v2
-      with:
-        paths: "**/*.trx"
-      if: always()
+      - name: Create test summary
+        uses: test-summary/action@dist
+        with:
+          paths: results/**/*.xml
+        if: always()
