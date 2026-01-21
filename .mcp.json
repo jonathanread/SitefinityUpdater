@@ -1,0 +1,10 @@
+{
+  "inputs": [],
+  "servers": {
+    "sitefinity-aspnet-mcp": {
+      "type": "sse",
+      "url": "https://mcp.sitefinity.cloud/netcore-widgets",
+      "headers": {}
+    }
+  }
+}

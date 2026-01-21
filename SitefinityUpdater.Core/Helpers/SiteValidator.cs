@@ -5,21 +5,23 @@ namespace SitefinityContentUpdater.Core.Helpers
 {
     public class SiteValidator
     {
-        public static async Task<SiteValidationResult> ValidateAndConfirmSiteAsync(IRestClient client, Guid currentSiteId)
+        public static async Task<SiteValidationResult> ValidateAndConfirmSiteAsync(IRestClient client, Guid currentSiteId, string siteName = "")
         {
+            var siteLabel = string.IsNullOrEmpty(siteName) ? "Sitefinity site" : $"{siteName} site";
+            
             var site = await client.Sites().GetCurrentSite();
             
             if (site == null)
             {
-                ConsoleHelper.WriteError("Failed to connect to Sitefinity site. Please check the site url and access key and try again.");
+                ConsoleHelper.WriteError($"Failed to connect to {siteLabel}. Please check the site url and access key and try again.");
                 return new SiteValidationResult { IsValid = false, SiteId = currentSiteId };
             }
 
-            ConsoleHelper.WriteSuccess($"Successfully connected to Sitefinity site: {site.Name}");
+            ConsoleHelper.WriteSuccess($"Successfully connected to {siteLabel}: {site.Name}");
 
-            if (!ConsoleHelper.Confirm("Is this the correct site? y/n"))
+            if (!ConsoleHelper.Confirm($"Is this the correct {siteLabel}? (y/n)"))
             {
-                var newSiteId = ConsoleHelper.ReadLine("What is the site id you want to connect to?");
+                var newSiteId = ConsoleHelper.ReadLine($"Enter the site ID for the {siteLabel} you want to connect to:");
                 
                 if (!string.IsNullOrEmpty(newSiteId) && Guid.TryParse(newSiteId, out var parsedSiteId))
                 {
@@ -32,7 +34,7 @@ namespace SitefinityContentUpdater.Core.Helpers
                 }
             }
 
-            ConsoleHelper.WriteSuccess("Proceeding with the update...");
+            ConsoleHelper.WriteSuccess($"Confirmed {siteLabel}. Proceeding...");
             return new SiteValidationResult { IsValid = true, SiteId = currentSiteId };
         }
     }

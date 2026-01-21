@@ -9,15 +9,16 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
     /// Integration tests that verify the interaction between multiple components.
     /// These tests don't require a live Sitefinity instance but test component integration.
     /// </summary>
+    [Collection("ConsoleTests")]
     public class ConfigurationIntegrationTests
     {
         [Fact]
         public void LoadConfiguration_And_GetCsvFilePath_ShouldWorkTogether()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
 
                 var config = ConfigurationHelper.LoadConfiguration();
@@ -31,6 +32,7 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -38,6 +40,7 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
         public async Task ConfigurationHelper_And_RestClientFactory_ShouldWorkTogether()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
                 var inMemorySettings = new Dictionary<string, string>
@@ -51,7 +54,6 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
                     .AddInMemoryCollection(inMemorySettings)
                     .Build();
 
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
 
                 var config = await ConfigurationHelper.GetSitefinityConfigAsync(configuration);
@@ -74,6 +76,7 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -81,6 +84,7 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
         public void ConfigurationHelper_ShouldHandleMultipleConfigurations()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
                 var config1 = new Dictionary<string, string>
@@ -101,7 +105,6 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
                     .AddInMemoryCollection(config2)
                     .Build();
 
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
 
                 var path1 = ConfigurationHelper.GetCsvFilePath(configuration1);
@@ -114,6 +117,7 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
     }
