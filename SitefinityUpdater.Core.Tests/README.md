@@ -4,7 +4,7 @@ This document describes the comprehensive unit and integration tests created for
 
 ## Test Coverage Summary
 
-- **Total Tests**: 61
+- **Total Tests**: 83 (previously 61)
 - **Test Categories**: Unit Tests & Integration Tests
 - **Test Frameworks**: xUnit, Moq, FluentAssertions
 
@@ -76,6 +76,30 @@ Tests for content processing initialization and validation.
 - `UpdateContentAsync_ShouldThrowArgumentNullException_WhenContentTypeIsNull` - Parameter validation
 - `UpdateContentAsync_ShouldThrowArgumentNullException_WhenFieldNameIsNull` - Parameter validation
 
+#### RelationshipProcessorTests.cs (16 tests) **NEW**
+Tests for relationship building initialization and core functionality.
+
+**Tests:**
+- `RelationshipProcessor_ShouldThrowArgumentNullException_WhenClientIsNull` - Validates constructor
+- `RelationshipProcessor_ShouldThrowArgumentNullException_WhenCsvFilePathIsNull` - Validates constructor
+- `RelationshipProcessor_ShouldInitialize_WithValidParameters` - Tests valid initialization
+- `BuildRelationshipsAsync_ShouldThrowArgumentNullException_WhenContentTypeIsNull` - Parameter validation
+- `BuildRelationshipsAsync_ShouldThrowArgumentNullException_WhenRelationshipFieldNameIsNull` - Parameter validation
+- `BuildRelationshipsAsync_ShouldReturnFailed_WhenCsvFileDoesNotExist` - File validation
+- `BuildRelationshipsAsync_ShouldReturnFailed_WhenCsvIsEmpty` - Empty CSV handling
+- `BuildRelationshipsAsync_ShouldProcessSuccessfully_InTestMode` - Test mode execution
+- `BuildRelationshipsAsync_ShouldHandleBatching_WhenMoreThan50Items` - Batch processing (50 items per batch)
+
+**RelationshipMappingTests (3 tests):**
+- Property initialization
+- Default initialization
+- Collection operations and filtering
+
+**RelationshipProcessorParsingTests (3 tests):**
+- `ParseRelatedItemIds_ShouldSupportMultipleSeparators` - Comma, semicolon, pipe support
+- `ParseRelatedItemIds_ShouldSkipInvalidGuids` - Invalid GUID handling
+- `ParseRelatedItemIds_ShouldHandleWhitespace` - Whitespace trimming
+
 ### 3. Model/DTO Tests
 
 #### ProcessingResultTests.cs (3 tests)
@@ -139,6 +163,47 @@ Tests for CSV mapping functionality.
 - `ImgDetail_ShouldSupportCollectionOperations` - ImgDetail collections
 - `ProcessingResult_ShouldAccumulateCorrectly` - Result aggregation
 
+#### RelationshipProcessorIntegrationTests.cs (7 tests) **NEW**
+Tests for end-to-end relationship building workflows.
+
+**Tests:**
+- `RelationshipProcessor_ShouldHandleCompleteWorkflow` - Complete workflow with multiple mappings
+- `RelationshipProcessor_ShouldHandleErrorsGracefully` - Error handling and partial success
+- `RelationshipProcessor_ShouldHandleMixedSeparators` - Multiple separator types in one CSV
+- `RelationshipProcessor_ShouldHandleLargeDataset` - Performance test with 200 relationships
+- `RelationshipProcessor_ShouldHandlePartialFailures` - Mix of valid and invalid GUIDs
+- `RelationshipProcessor_ShouldRespectTestMode` - Test mode behavior verification
+- Implements `IDisposable` for proper test file cleanup
+
+## New Features Tested (RelationshipProcessor)
+
+### Batch Processing
+Tests verify that relationships are processed in batches of 50 items:
+- Verifies batch count calculation (125 items = 3 batches)
+- Confirms batch logging output
+- Validates Task.WhenAll concurrent execution
+
+### Separator Support
+Tests confirm support for multiple ID separators:
+- Comma (`,`)
+- Semicolon (`;`)
+- Pipe (`|`)
+- Mixed separators in single CSV
+
+### Error Handling
+Tests validate robust error handling:
+- Invalid GUIDs are skipped with warnings
+- API errors don't stop processing
+- Partial failures are handled gracefully
+- Empty CSV files are detected
+- Missing CSV files are reported
+
+### Test Mode
+Tests confirm test mode behavior:
+- Only first mapping is processed
+- Proper logging of test mode status
+- Results indicate test completion
+
 ## Test Dependencies
 
 The test project uses the following NuGet packages:
@@ -168,6 +233,13 @@ dotnet test SitefinityContentUpdater.Core.Tests\SitefinityContentUpdater.Core.Te
 ### Run specific test class:
 ```bash
 dotnet test --filter "FullyQualifiedName~ConsoleHelperTests"
+dotnet test --filter "FullyQualifiedName~RelationshipProcessorTests"
+dotnet test --filter "FullyQualifiedName~RelationshipProcessorIntegrationTests"
+```
+
+### Run only integration tests:
+```bash
+dotnet test --filter "FullyQualifiedName~Integration"
 ```
 
 ### Generate code coverage:
@@ -183,6 +255,7 @@ dotnet test SitefinityContentUpdater.Core.Tests\SitefinityContentUpdater.Core.Te
 4. **Clear Naming**: Test names follow the pattern `MethodName_Should_ExpectedBehavior_When_Condition`
 5. **Comprehensive Coverage**: Tests cover happy paths, error cases, and edge cases
 6. **No External Dependencies**: Tests don't require a live Sitefinity instance
+7. **Cleanup**: Integration tests implement `IDisposable` for proper resource cleanup
 
 ## Important Patterns
 
@@ -214,10 +287,53 @@ public void SomeTest()
 
 This pattern prevents `ObjectDisposedException` by ensuring Console streams are always restored even if the test fails or the StringWriter is disposed.
 
+### File Cleanup Pattern
+Integration tests that create temporary files should implement `IDisposable`:
+
+```csharp
+public class MyIntegrationTests : IDisposable
+{
+    private readonly string _testFilePath;
+    
+    public MyIntegrationTests()
+    {
+        _testFilePath = Path.Combine(Path.GetTempPath(), $"test_{Guid.NewGuid()}.csv");
+    }
+    
+    public void Dispose()
+    {
+        if (File.Exists(_testFilePath))
+        {
+            try
+            {
+                File.Delete(_testFilePath);
+            }
+            catch
+            {
+                // Ignore cleanup errors
+            }
+        }
+    }
+}
+```
+
 ## Test Categories
 
 - **Unit Tests**: Test individual components in isolation (RestClient, Helpers, Models)
-- **Integration Tests**: Test interactions between multiple components (Configuration + RestClient, Validation workflow)
+- **Integration Tests**: Test interactions between multiple components (Configuration + RestClient, Validation workflow, Relationship workflows)
+
+## Test Coverage by Component
+
+| Component | Unit Tests | Integration Tests | Total |
+|-----------|------------|-------------------|-------|
+| ConsoleHelper | 9 | 0 | 9 |
+| ConfigurationHelper | 7 | 3 | 10 |
+| SiteValidator | 4 | 4 | 8 |
+| ContentProcessor | 6 | 0 | 6 |
+| **RelationshipProcessor** | **16** | **7** | **23** |
+| RestClient | 4 | 1 | 5 |
+| Models/DTOs | 16 | 6 | 22 |
+| **Total** | **62** | **21** | **83** |
 
 ## Future Enhancements
 
@@ -225,7 +341,11 @@ Potential areas for additional testing:
 
 1. **End-to-End Tests**: Tests with a mock Sitefinity instance
 2. **Performance Tests**: Measure performance of batch operations
-3. **CSV File I/O Tests**: Test actual CSV file reading/writing
+3. **CSV File I/O Tests**: Test actual CSV file reading/writing edge cases
 4. **HTML Parsing Tests**: Test AngleSharp integration for image replacement
 5. **Error Recovery Tests**: Test resilience and retry logic
-6. **Concurrent Operation Tests**: Test thread-safety of operations
+6. **Concurrent Operation Tests**: Test thread-safety of batch operations
+7. **RelationshipProcessor Advanced Scenarios**: 
+   - Very large batches (1000+ items)
+   - Network timeout simulation
+   - Concurrent relationship creation

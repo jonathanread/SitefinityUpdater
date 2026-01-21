@@ -15,30 +15,50 @@ namespace SitefinityContentUpdater.Core.Helpers
 
         public static async Task<SitefinityConfig> GetSitefinityConfigAsync(IConfiguration configuration)
         {
+            return await GetSitefinityConfigAsync(configuration, "Sitefinity", "Target Site");
+        }
+
+        public static async Task<SitefinityConfig> GetSourceSitefinityConfigAsync(IConfiguration configuration)
+        {
+            return await GetSitefinityConfigAsync(configuration, "SourceSite", "Source Site");
+        }
+
+        public static async Task<SitefinityConfig> GetTargetSitefinityConfigAsync(IConfiguration configuration)
+        {
+            return await GetSitefinityConfigAsync(configuration, "TargetSite", "Target Site");
+        }
+
+        private static async Task<SitefinityConfig> GetSitefinityConfigAsync(
+            IConfiguration configuration,
+            string sectionName,
+            string displayName)
+        {
+            ConsoleHelper.WriteInfo($"Configuring {displayName}...");
+
             var siteUrl = GetOrPromptForValue(
-                configuration["Sitefinity:Url"],
-                "Enter the Sitefinity site url (e.g. http://localhost:8080/api/default/):",
-                "Sitefinity site url is required.",
-                "Using site URL from config");
+                configuration[$"{sectionName}:Url"],
+                $"Enter the {displayName} Sitefinity site url (e.g. http://localhost:8080/api/default/):",
+                $"{displayName} site url is required.",
+                $"Using {displayName} URL from config");
 
             var accessKey = GetOrPromptForValue(
-                configuration["Sitefinity:AccessKey"],
-                "Enter the Sitefinity access key:",
-                "Sitefinity access key is required.",
-                "Using access key from config",
+                configuration[$"{sectionName}:AccessKey"],
+                $"Enter the {displayName} Sitefinity access key:",
+                $"{displayName} access key is required.",
+                $"Using {displayName} access key from config",
                 isSecret: true);
 
             if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(siteUrl))
             {
-                ConsoleHelper.WriteError("Sitefinity site url and access key are required to proceed. Exiting ...");
-                throw new InvalidOperationException("Required configuration missing");
+                ConsoleHelper.WriteError($"{displayName} site url and access key are required to proceed. Exiting ...");
+                throw new InvalidOperationException($"Required {displayName} configuration missing");
             }
 
             var siteIdString = GetOrPromptForValue(
-                configuration["Sitefinity:SiteId"],
-                "What is the site id you want to connect to?",
-                "Site ID is required.",
-                $"Using site ID from config");
+                configuration[$"{sectionName}:SiteId"],
+                $"What is the {displayName} site id you want to connect to?",
+                $"{displayName} Site ID is required.",
+                $"Using {displayName} Site ID from config");
 
             return new SitefinityConfig
             {

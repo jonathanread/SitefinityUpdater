@@ -4,6 +4,7 @@ using SitefinityContentUpdater.Core.Helpers;
 
 namespace SitefinityContentUpdater.Core.Tests.Helpers
 {
+    [Collection("ConsoleTests")]
     public class ConfigurationHelperTests
     {
         [Fact]
@@ -19,6 +20,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         public async Task GetSitefinityConfigAsync_ShouldReturnConfig_WhenAllValuesProvidedInConfiguration()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
                 var inMemorySettings = new Dictionary<string, string>
@@ -32,7 +34,6 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
                     .AddInMemoryCollection(inMemorySettings)
                     .Build();
 
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
 
                 var result = await ConfigurationHelper.GetSitefinityConfigAsync(configuration);
@@ -45,6 +46,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -53,6 +55,8 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var originalOut = Console.Out;
             var originalIn = Console.In;
+            var sw = new StringWriter();
+            var sr = new StringReader("http://test.com/api/default/\ntest-key\n" + Guid.NewGuid().ToString() + "\n");
             try
             {
                 var inMemorySettings = new Dictionary<string, string>();
@@ -61,8 +65,6 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
                     .AddInMemoryCollection(inMemorySettings)
                     .Build();
 
-                using var sw = new StringWriter();
-                using var sr = new StringReader("http://test.com/api/default/\ntest-key\n" + Guid.NewGuid().ToString() + "\n");
                 Console.SetOut(sw);
                 Console.SetIn(sr);
 
@@ -76,6 +78,8 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             {
                 Console.SetOut(originalOut);
                 Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
             }
         }
 
@@ -84,7 +88,6 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var originalOut = Console.Out;
             var originalIn = Console.In;
-            
             var sw = new StringWriter();
             var sr = new StringReader("\n\n\n\n");
             
@@ -99,7 +102,137 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
                         .Build());
 
                 await act.Should().ThrowAsync<InvalidOperationException>()
-                    .WithMessage("Required configuration missing");
+                    .WithMessage("*configuration missing*");
+            }
+            finally
+            {
+                Console.SetOut(originalOut);
+                Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
+            }
+        }
+
+        [Fact]
+        public async Task GetSourceSitefinityConfigAsync_ShouldReturnConfig_WhenAllValuesProvidedInConfiguration()
+        {
+            var originalOut = Console.Out;
+            var sw = new StringWriter();
+            try
+            {
+                var siteId = Guid.NewGuid();
+                var inMemorySettings = new Dictionary<string, string>
+                {
+                    {"SourceSite:Url", "http://source-site.com/api/default/"},
+                    {"SourceSite:AccessKey", "source-access-key"},
+                    {"SourceSite:SiteId", siteId.ToString()}
+                };
+
+                IConfiguration configuration = new ConfigurationBuilder()
+                    .AddInMemoryCollection(inMemorySettings)
+                    .Build();
+
+                Console.SetOut(sw);
+
+                var result = await ConfigurationHelper.GetSourceSitefinityConfigAsync(configuration);
+
+                result.Should().NotBeNull();
+                result.Url.Should().Be("http://source-site.com/api/default/");
+                result.AccessKey.Should().Be("source-access-key");
+                result.SiteId.Should().Be(siteId);
+            }
+            finally
+            {
+                Console.SetOut(originalOut);
+                sw.Dispose();
+            }
+        }
+
+        [Fact]
+        public async Task GetTargetSitefinityConfigAsync_ShouldReturnConfig_WhenAllValuesProvidedInConfiguration()
+        {
+            var originalOut = Console.Out;
+            var sw = new StringWriter();
+            try
+            {
+                var siteId = Guid.NewGuid();
+                var inMemorySettings = new Dictionary<string, string>
+                {
+                    {"TargetSite:Url", "http://target-site.com/api/default/"},
+                    {"TargetSite:AccessKey", "target-access-key"},
+                    {"TargetSite:SiteId", siteId.ToString()}
+                };
+
+                IConfiguration configuration = new ConfigurationBuilder()
+                    .AddInMemoryCollection(inMemorySettings)
+                    .Build();
+
+                Console.SetOut(sw);
+
+                var result = await ConfigurationHelper.GetTargetSitefinityConfigAsync(configuration);
+
+                result.Should().NotBeNull();
+                result.Url.Should().Be("http://target-site.com/api/default/");
+                result.AccessKey.Should().Be("target-access-key");
+                result.SiteId.Should().Be(siteId);
+            }
+            finally
+            {
+                Console.SetOut(originalOut);
+                sw.Dispose();
+            }
+        }
+
+        [Fact]
+        public async Task GetSourceSitefinityConfigAsync_ShouldThrowInvalidOperationException_WhenConfigMissing()
+        {
+            var originalOut = Console.Out;
+            var originalIn = Console.In;
+            var sw = new StringWriter();
+            var sr = new StringReader("\n\n\n\n");
+            
+            try
+            {
+                Console.SetOut(sw);
+                Console.SetIn(sr);
+
+                Func<Task> act = async () => await ConfigurationHelper.GetSourceSitefinityConfigAsync(
+                    new ConfigurationBuilder()
+                        .AddInMemoryCollection(new Dictionary<string, string>())
+                        .Build());
+
+                await act.Should().ThrowAsync<InvalidOperationException>()
+                    .WithMessage("*configuration missing*");
+            }
+            finally
+            {
+                Console.SetOut(originalOut);
+                Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
+            }
+        }
+
+        [Fact]
+        public async Task GetTargetSitefinityConfigAsync_ShouldThrowInvalidOperationException_WhenConfigMissing()
+        {
+            var originalOut = Console.Out;
+            var originalIn = Console.In;
+            var sw = new StringWriter();
+            var sr = new StringReader("\n\n\n\n");
+            
+            try
+            {
+                Console.SetOut(sw);
+                Console.SetIn(sr);
+
+                Func<Task> act = async () => await ConfigurationHelper.GetTargetSitefinityConfigAsync(
+                    new ConfigurationBuilder()
+                        .AddInMemoryCollection(new Dictionary<string, string>())
+                        .Build());
+
+                await act.Should().ThrowAsync<InvalidOperationException>()
+                    .WithMessage("*configuration missing*");
             }
             finally
             {
@@ -114,6 +247,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         public void GetCsvFilePath_ShouldReturnDefaultPath_WhenNotConfigured()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
                 var inMemorySettings = new Dictionary<string, string>();
@@ -122,7 +256,6 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
                     .AddInMemoryCollection(inMemorySettings)
                     .Build();
 
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
 
                 var result = ConfigurationHelper.GetCsvFilePath(configuration);
@@ -133,6 +266,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -140,6 +274,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         public void GetCsvFilePath_ShouldReturnConfiguredPath_WhenProvided()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
                 var inMemorySettings = new Dictionary<string, string>
@@ -151,7 +286,6 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
                     .AddInMemoryCollection(inMemorySettings)
                     .Build();
 
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
 
                 var result = ConfigurationHelper.GetCsvFilePath(configuration);
@@ -162,6 +296,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -169,6 +304,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         public void GetCsvFilePath_ShouldCombineWithBaseDirectory()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
                 var inMemorySettings = new Dictionary<string, string>
@@ -180,7 +316,6 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
                     .AddInMemoryCollection(inMemorySettings)
                     .Build();
 
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
 
                 var result = ConfigurationHelper.GetCsvFilePath(configuration);
@@ -191,6 +326,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
     }

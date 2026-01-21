@@ -3,15 +3,16 @@ using SitefinityContentUpdater.Core.Helpers;
 
 namespace SitefinityContentUpdater.Core.Tests.Helpers
 {
+    [Collection("ConsoleTests")]
     public class ConsoleHelperTests
     {
         [Fact]
         public void WriteSuccess_ShouldNotThrow()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
                 
                 Action act = () => ConsoleHelper.WriteSuccess("Test success message");
@@ -20,6 +21,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -27,9 +29,9 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         public void WriteError_ShouldNotThrow()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
                 
                 Action act = () => ConsoleHelper.WriteError("Test error message");
@@ -38,6 +40,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -45,9 +48,9 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         public void WriteInfo_ShouldNotThrow()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
                 
                 Action act = () => ConsoleHelper.WriteInfo("Test info message");
@@ -56,6 +59,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -63,9 +67,9 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         public void WriteWarning_ShouldNotThrow()
         {
             var originalOut = Console.Out;
+            var sw = new StringWriter();
             try
             {
-                using var sw = new StringWriter();
                 Console.SetOut(sw);
                 
                 Action act = () => ConsoleHelper.WriteWarning("Test warning message");
@@ -74,6 +78,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             finally
             {
                 Console.SetOut(originalOut);
+                sw.Dispose();
             }
         }
 
@@ -82,10 +87,10 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var originalOut = Console.Out;
             var originalIn = Console.In;
+            var sw = new StringWriter();
+            var sr = new StringReader("test input\n");
             try
             {
-                using var sw = new StringWriter();
-                using var sr = new StringReader("test input\n");
                 Console.SetOut(sw);
                 Console.SetIn(sr);
 
@@ -97,6 +102,8 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             {
                 Console.SetOut(originalOut);
                 Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
             }
         }
 
@@ -105,10 +112,10 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var originalOut = Console.Out;
             var originalIn = Console.In;
+            var sw = new StringWriter();
+            var sr = new StringReader("y\n");
             try
             {
-                using var sw = new StringWriter();
-                using var sr = new StringReader("y\n");
                 Console.SetOut(sw);
                 Console.SetIn(sr);
 
@@ -120,6 +127,8 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             {
                 Console.SetOut(originalOut);
                 Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
             }
         }
 
@@ -128,10 +137,10 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var originalOut = Console.Out;
             var originalIn = Console.In;
+            var sw = new StringWriter();
+            var sr = new StringReader("Y\n");
             try
             {
-                using var sw = new StringWriter();
-                using var sr = new StringReader("Y\n");
                 Console.SetOut(sw);
                 Console.SetIn(sr);
 
@@ -143,6 +152,8 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             {
                 Console.SetOut(originalOut);
                 Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
             }
         }
 
@@ -151,10 +162,10 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var originalOut = Console.Out;
             var originalIn = Console.In;
+            var sw = new StringWriter();
+            var sr = new StringReader("n\n");
             try
             {
-                using var sw = new StringWriter();
-                using var sr = new StringReader("n\n");
                 Console.SetOut(sw);
                 Console.SetIn(sr);
 
@@ -166,6 +177,8 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             {
                 Console.SetOut(originalOut);
                 Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
             }
         }
 
@@ -174,10 +187,10 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var originalOut = Console.Out;
             var originalIn = Console.In;
+            var sw = new StringWriter();
+            var sr = new StringReader("maybe\n");
             try
             {
-                using var sw = new StringWriter();
-                using var sr = new StringReader("maybe\n");
                 Console.SetOut(sw);
                 Console.SetIn(sr);
 
@@ -189,6 +202,8 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             {
                 Console.SetOut(originalOut);
                 Console.SetIn(originalIn);
+                sw.Dispose();
+                sr.Dispose();
             }
         }
     }
