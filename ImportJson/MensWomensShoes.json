@@ -1,0 +1,659 @@
+{
+  "Telerik.Sitefinity.DynamicTypes.Model.Products.Product": [
+    {
+      "Title": "CrWn Street Low Sneaker",
+      "ParentId": "1a8d65bf-88a0-4b83-8f8f-0b013f224c34",
+      "Sku": "crwn-m-shoe-001",
+      "UrlName": "crwn-m-shoe-001",
+      "Price": 110.0,
+      "Description": "Low profile street sneaker built for everyday wear with a clean silhouette.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "8",
+              "UrlName": "8",
+              "Sku": "8",
+              "Description": "Men's size 8"
+            },
+            {
+              "Title": "9",
+              "UrlName": "9",
+              "Sku": "9",
+              "Description": "Men's size 9"
+            },
+            {
+              "Title": "10",
+              "UrlName": "10",
+              "Sku": "10",
+              "Description": "Men's size 10"
+            },
+            {
+              "Title": "11",
+              "UrlName": "11",
+              "Sku": "11",
+              "Description": "Men's size 11"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "White",
+              "UrlName": "white",
+              "Sku": "white",
+              "Description": "Clean white"
+            },
+            {
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "8",
+          "UrlName": "8",
+          "Sku": "8",
+          "Description": "Men's size 8",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "9",
+          "UrlName": "9",
+          "Sku": "9",
+          "Description": "Men's size 9",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "10",
+          "UrlName": "10",
+          "Sku": "10",
+          "Description": "Men's size 10",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "11",
+          "UrlName": "11",
+          "Sku": "11",
+          "Description": "Men's size 11",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "White",
+          "UrlName": "white",
+          "Sku": "white",
+          "Description": "Clean white",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Mono Runner",
+      "ParentId": "1a8d65bf-88a0-4b83-8f8f-0b013f224c34",
+      "Sku": "crwn-m-shoe-002",
+      "UrlName": "crwn-m-shoe-002",
+      "Price": 125.0,
+      "Description": "Minimal running-inspired sneaker with lightweight cushioning.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "8",
+              "UrlName": "8",
+              "Sku": "8",
+              "Description": "Men's size 8"
+            },
+            {
+              "Title": "9",
+              "UrlName": "9",
+              "Sku": "9",
+              "Description": "Men's size 9"
+            },
+            {
+              "Title": "10",
+              "UrlName": "10",
+              "Sku": "10",
+              "Description": "Men's size 10"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Graphite",
+              "UrlName": "graphite",
+              "Sku": "graphite",
+              "Description": "Dark grey tone"
+            },
+            {
+              "Title": "Bone",
+              "UrlName": "bone",
+              "Sku": "bone",
+              "Description": "Warm bone neutral"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "8",
+          "UrlName": "8",
+          "Sku": "8",
+          "Description": "Men's size 8",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "9",
+          "UrlName": "9",
+          "Sku": "9",
+          "Description": "Men's size 9",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "10",
+          "UrlName": "10",
+          "Sku": "10",
+          "Description": "Men's size 10",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Graphite",
+          "UrlName": "graphite",
+          "Sku": "graphite",
+          "Description": "Dark grey tone",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Bone",
+          "UrlName": "bone",
+          "Sku": "bone",
+          "Description": "Warm bone neutral",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Trail Hiker",
+      "ParentId": "1a8d65bf-88a0-4b83-8f8f-0b013f224c34",
+      "Sku": "crwn-m-shoe-003",
+      "UrlName": "crwn-m-shoe-003",
+      "Price": 145.0,
+      "Description": "Rugged trail-ready shoe with durable construction and modern styling.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "9",
+              "UrlName": "9",
+              "Sku": "9",
+              "Description": "Men's size 9"
+            },
+            {
+              "Title": "10",
+              "UrlName": "10",
+              "Sku": "10",
+              "Description": "Men's size 10"
+            },
+            {
+              "Title": "11",
+              "UrlName": "11",
+              "Sku": "11",
+              "Description": "Men's size 11"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Olive",
+              "UrlName": "olive",
+              "Sku": "olive",
+              "Description": "Muted olive tone"
+            },
+            {
+              "Title": "Charcoal",
+              "UrlName": "charcoal",
+              "Sku": "charcoal",
+              "Description": "Dark charcoal grey"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "9",
+          "UrlName": "9",
+          "Sku": "9",
+          "Description": "Men's size 9",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "10",
+          "UrlName": "10",
+          "Sku": "10",
+          "Description": "Men's size 10",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "11",
+          "UrlName": "11",
+          "Sku": "11",
+          "Description": "Men's size 11",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Olive",
+          "UrlName": "olive",
+          "Sku": "olive",
+          "Description": "Muted olive tone",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Charcoal",
+          "UrlName": "charcoal",
+          "Sku": "charcoal",
+          "Description": "Dark charcoal grey",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Slip-On Canvas",
+      "ParentId": "1a8d65bf-88a0-4b83-8f8f-0b013f224c34",
+      "Sku": "crwn-m-shoe-004",
+      "UrlName": "crwn-m-shoe-004",
+      "Price": 95.0,
+      "Description": "Easy slip-on shoe with breathable canvas and laid-back style.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "8",
+              "UrlName": "8",
+              "Sku": "8",
+              "Description": "Men's size 8"
+            },
+            {
+              "Title": "9",
+              "UrlName": "9",
+              "Sku": "9",
+              "Description": "Men's size 9"
+            },
+            {
+              "Title": "10",
+              "UrlName": "10",
+              "Sku": "10",
+              "Description": "Men's size 10"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Sand",
+              "UrlName": "sand",
+              "Sku": "sand",
+              "Description": "Warm sand neutral"
+            },
+            {
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "8",
+          "UrlName": "8",
+          "Sku": "8",
+          "Description": "Men's size 8",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "9",
+          "UrlName": "9",
+          "Sku": "9",
+          "Description": "Men's size 9",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "10",
+          "UrlName": "10",
+          "Sku": "10",
+          "Description": "Men's size 10",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Sand",
+          "UrlName": "sand",
+          "Sku": "sand",
+          "Description": "Warm sand neutral",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Court Classic",
+      "ParentId": "1a8d65bf-88a0-4b83-8f8f-0b013f224c34",
+      "Sku": "crwn-w-shoe-005",
+      "UrlName": "crwn-w-shoe-005",
+      "Price": 108.0,
+      "Description": "Women’s court sneaker with a clean profile and elevated comfort.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "6",
+              "UrlName": "6",
+              "Sku": "6",
+              "Description": "Women's size 6"
+            },
+            {
+              "Title": "7",
+              "UrlName": "7",
+              "Sku": "7",
+              "Description": "Women's size 7"
+            },
+            {
+              "Title": "8",
+              "UrlName": "8",
+              "Sku": "8",
+              "Description": "Women's size 8"
+            },
+            {
+              "Title": "9",
+              "UrlName": "9",
+              "Sku": "9",
+              "Description": "Women's size 9"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Cream",
+              "UrlName": "cream",
+              "Sku": "cream",
+              "Description": "Warm cream tone"
+            },
+            {
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "6",
+          "UrlName": "6",
+          "Sku": "6",
+          "Description": "Women's size 6",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "7",
+          "UrlName": "7",
+          "Sku": "7",
+          "Description": "Women's size 7",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "8",
+          "UrlName": "8",
+          "Sku": "8",
+          "Description": "Women's size 8",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "9",
+          "UrlName": "9",
+          "Sku": "9",
+          "Description": "Women's size 9",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Cream",
+          "UrlName": "cream",
+          "Sku": "cream",
+          "Description": "Warm cream tone",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Flex Runner",
+      "ParentId": "1a8d65bf-88a0-4b83-8f8f-0b013f224c34",
+      "Sku": "crwn-w-shoe-006",
+      "UrlName": "crwn-w-shoe-006",
+      "Price": 120.0,
+      "Description": "Lightweight women’s runner with responsive cushioning and breathable design.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "6",
+              "UrlName": "6",
+              "Sku": "6",
+              "Description": "Women's size 6"
+            },
+            {
+              "Title": "7",
+              "UrlName": "7",
+              "Sku": "7",
+              "Description": "Women's size 7"
+            },
+            {
+              "Title": "8",
+              "UrlName": "8",
+              "Sku": "8",
+              "Description": "Women's size 8"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Blush",
+              "UrlName": "blush",
+              "Sku": "blush",
+              "Description": "Soft blush tone"
+            },
+            {
+              "Title": "Stone",
+              "UrlName": "stone",
+              "Sku": "stone",
+              "Description": "Light stone neutral"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "6",
+          "UrlName": "6",
+          "Sku": "6",
+          "Description": "Women's size 6",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "7",
+          "UrlName": "7",
+          "Sku": "7",
+          "Description": "Women's size 7",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "8",
+          "UrlName": "8",
+          "Sku": "8",
+          "Description": "Women's size 8",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Blush",
+          "UrlName": "blush",
+          "Sku": "blush",
+          "Description": "Soft blush tone",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Stone",
+          "UrlName": "stone",
+          "Sku": "stone",
+          "Description": "Light stone neutral",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Everyday Mule",
+      "ParentId": "1a8d65bf-88a0-4b83-8f8f-0b013f224c34",
+      "Sku": "crwn-w-shoe-007",
+      "UrlName": "crwn-w-shoe-007",
+      "Price": 102.0,
+      "Description": "Slip-on mule with modern shape and all-day comfort.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "6",
+              "UrlName": "6",
+              "Sku": "6",
+              "Description": "Women's size 6"
+            },
+            {
+              "Title": "7",
+              "UrlName": "7",
+              "Sku": "7",
+              "Description": "Women's size 7"
+            },
+            {
+              "Title": "8",
+              "UrlName": "8",
+              "Sku": "8",
+              "Description": "Women's size 8"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Taupe",
+              "UrlName": "taupe",
+              "Sku": "taupe",
+              "Description": "Warm taupe neutral"
+            },
+            {
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "6",
+          "UrlName": "6",
+          "Sku": "6",
+          "Description": "Women's size 6",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "7",
+          "UrlName": "7",
+          "Sku": "7",
+          "Description": "Women's size 7",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "8",
+          "UrlName": "8",
+          "Sku": "8",
+          "Description": "Women's size 8",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Taupe",
+          "UrlName": "taupe",
+          "Sku": "taupe",
+          "Description": "Warm taupe neutral",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        }
+      ]
+    }
+  ]
+}

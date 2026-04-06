@@ -267,12 +267,16 @@ internal class Program
 
         foreach (var typePlan in importPlan.TopLevelTypes)
         {
+            var typeName = typePlan.ContentType.Split('.').Last();
+            
             foreach (var itemPlan in typePlan.Items)
             {
                 try
                 {
                     var sdkItem = BuildSdkItem(itemPlan.Fields);
-                    var created = await client.CreateItem<SdkItem>(BuildCreateArgs(typePlan.ContentType, sdkItem, publishItems));
+                    
+                    // Create as draft first
+                    var created = await client.CreateItem<SdkItem>(BuildCreateArgs(typePlan.ContentType, sdkItem, false));
 
                     if (created == null)
                     {
@@ -284,12 +288,7 @@ internal class Program
                         throw new InvalidOperationException($"Created item returned empty ID for type '{typePlan.ContentType}'.");
                     }
 
-                    if (publishItems)
-                    {
-                        await PublishItemAsync(client, typePlan.ContentType, created);
-                    }
-
-                    ConsoleHelper.WriteSuccess($"Created parent item in '{typePlan.ContentType}' with ID: {created.Id}");
+                    ConsoleHelper.WriteSuccess($"Created {typeName} item with ID: {created.Id}");
 
                     createdParents.Add(new CreatedParentItem(
                         typePlan.ContentType,
@@ -311,6 +310,28 @@ internal class Program
             }
         }
 
+        // Publish all top-level items after creation if requested
+        if (publishItems && createdParents.Count > 0)
+        {
+            ConsoleHelper.WriteInfo($"Publishing {createdParents.Count} top-level item(s)...");
+            
+            var publishCount = 0;
+            foreach (var parent in createdParents)
+            {
+                try
+                {
+                    await PublishItemAsync(client, parent.ContentType, new SdkItem { Id = parent.Id });
+                    publishCount++;
+                }
+                catch (Exception ex)
+                {
+                    ConsoleHelper.WriteWarning($"Failed to publish item '{parent.Id}': {ex.Message}. Item created but remains in draft.");
+                }
+            }
+            
+            ConsoleHelper.WriteSuccess($"Published {publishCount} of {createdParents.Count} top-level item(s)");
+        }
+
         return createdParents;
     }
 
@@ -328,14 +349,24 @@ internal class Program
         List<ChildCollectionPlan> childCollections,
         bool publishItems)
     {
-        foreach (var childCollection in childCollections)
+        ConsoleHelper.WriteInfo($"Creating {childCollections.Count} child collection type(s) for parent '{parentId}'...");
+        
+        for (int collectionIndex = 0; collectionIndex < childCollections.Count; collectionIndex++)
         {
+            var childCollection = childCollections[collectionIndex];
+            
             if (string.IsNullOrWhiteSpace(childCollection.ContentType))
             {
                 ConsoleHelper.WriteWarning($"Skipping child creation for parent '{parentId}' because child content type is empty.");
                 continue;
             }
 
+            var typeName = childCollection.ContentType.Split('.').Last();
+            ConsoleHelper.WriteInfo($"[{collectionIndex + 1}/{childCollections.Count}] Processing {childCollection.Items.Count} {typeName} item(s)...");
+
+            var createdChildren = new List<(SdkItem Item, List<ChildCollectionPlan> GrandChildren)>();
+
+            // First pass: Create all children as draft
             foreach (var childPlan in childCollection.Items)
             {
                 JsonObject? childPayload = null;
@@ -355,7 +386,9 @@ internal class Program
                     }
 
                     var childItem = BuildSdkItem(childPayload);
-                    var createdChild = await client.CreateItem<SdkItem>(BuildCreateArgs(childCollection.ContentType, childItem, publishItems));
+                    
+                    // Always create as draft first
+                    var createdChild = await client.CreateItem<SdkItem>(BuildCreateArgs(childCollection.ContentType, childItem, false));
 
                     if (createdChild == null)
                     {
@@ -367,28 +400,73 @@ internal class Program
                         throw new InvalidOperationException($"Created child item returned empty ID for type '{childCollection.ContentType}'.");
                     }
 
-                    if (publishItems)
-                    {
-                        await PublishItemAsync(client, childCollection.ContentType, createdChild);
-                    }
-
-                    ConsoleHelper.WriteSuccess(
-                        $"Created child item in '{childCollection.ContentType}' with ID: {createdChild.Id} (ParentId: {parentId})");
-
-                    if (childPlan.ChildCollections.Count > 0)
-                    {
-                        await CreateChildItemsForParentAsync(client, createdChild.Id, childPlan.ChildCollections, publishItems);
-                    }
+                    createdChildren.Add((createdChild, childPlan.ChildCollections));
                 }
                 catch (Exception ex)
                 {
                     var payloadForError = childPayload?.ToJsonString() ?? childPlan.Fields.ToJsonString();
-                    throw new InvalidOperationException(
-                        $"Failed creating child item for type '{childCollection.ContentType}' (ParentId: {parentId}). Payload: {payloadForError}",
-                        ex);
+                    var titleValue = childPayload?.ContainsKey("Title") == true ? childPayload["Title"]?.ToString() : "unknown";
+                    
+                    var errorMessage = $"Failed creating child item '{titleValue}' for type '{childCollection.ContentType}' (ParentId: {parentId}). Payload: {payloadForError}";
+                    
+                    // Extract the actual API error if available
+                    var currentEx = ex;
+                    var exceptionChain = new List<string>();
+                    while (currentEx != null)
+                    {
+                        exceptionChain.Add($"{currentEx.GetType().Name}: {currentEx.Message}");
+                        currentEx = currentEx.InnerException;
+                    }
+                    
+                    errorMessage += "\nException chain:\n  " + string.Join("\n  → ", exceptionChain);
+                    
+                    ConsoleHelper.WriteError(errorMessage);
+                    throw new InvalidOperationException(errorMessage, ex);
                 }
             }
+
+            ConsoleHelper.WriteSuccess($"Created {createdChildren.Count} {typeName} item(s)");
+
+            // Second pass: Process grandchildren for each child
+            if (createdChildren.Any(c => c.GrandChildren.Count > 0))
+            {
+                foreach (var (child, grandChildren) in createdChildren)
+                {
+                    if (grandChildren.Count > 0)
+                    {
+                        await CreateChildItemsForParentAsync(client, child.Id, grandChildren, publishItems);
+                    }
+                }
+            }
+
+            // Third pass: Publish all children if requested
+            if (publishItems && createdChildren.Count > 0)
+            {
+                ConsoleHelper.WriteInfo($"Publishing {createdChildren.Count} {typeName} item(s)...");
+                
+                foreach (var (child, _) in createdChildren)
+                {
+                    try
+                    {
+                        await PublishItemAsync(client, childCollection.ContentType, child);
+                    }
+                    catch (Exception ex)
+                    {
+                        ConsoleHelper.WriteWarning($"Failed to publish {typeName} item '{child.Id}': {ex.Message}. Item created but remains in draft.");
+                    }
+                }
+                
+                ConsoleHelper.WriteSuccess($"Published {createdChildren.Count} {typeName} item(s)");
+            }
+
+            // Brief delay between different child types
+            if (collectionIndex < childCollections.Count - 1)
+            {
+                await Task.Delay(200);
+            }
         }
+        
+        ConsoleHelper.WriteSuccess($"Finished processing all {childCollections.Count} child collection type(s) for parent '{parentId}'");
     }
 
     private static CreateArgs BuildCreateArgs(string contentType, SdkItem data, bool publishItems)
@@ -402,15 +480,7 @@ internal class Program
 
     private static async Task PublishItemAsync(IRestClient client, string contentType, SdkItem item)
     {
-        try
-        {
-            await ItemManagementExtensions.Publish(client, new PublishArgs(contentType, item.Id));
-            ConsoleHelper.WriteInfo($"Published item '{item.Id}' in '{contentType}'.");
-        }
-        catch (Exception ex)
-        {
-            throw new InvalidOperationException($"Item '{item.Id}' was created but failed to publish for type '{contentType}'.", ex);
-        }
+        await ItemManagementExtensions.Publish(client, new PublishArgs(contentType, item.Id));
     }
 
     private static SdkItem BuildSdkItem(JsonObject jsonObject)
@@ -500,6 +570,6 @@ internal class Program
     private sealed record ImportPlan(List<TopLevelTypePlan> TopLevelTypes, bool HasChildren);
     private sealed record TopLevelTypePlan(string ContentType, List<ImportItemPlan> Items);
     private sealed record ImportItemPlan(JsonObject Fields, List<ChildCollectionPlan> ChildCollections);
-    private sealed record ChildCollectionPlan(string ContentType, List<ImportItemPlan> Items);
+    private sealed record ChildCollectionPlan(String ContentType, List<ImportItemPlan> Items);
     private sealed record CreatedParentItem(string ContentType, string Id, List<ChildCollectionPlan> ChildCollections);
 }
