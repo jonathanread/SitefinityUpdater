@@ -2,15 +2,11 @@
   "Telerik.Sitefinity.DynamicTypes.Model.Products.Product": [
     {
       "Title": "CrWn Core Crew Tee",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-tee-001",
       "UrlName": "crwn-m-tee-001",
       "Price": 38.0,
       "Description": "Premium cotton crew neck tee with a clean, modern fit.",
-      "MetaTitle": "CrWn Core Crew Tee for Men | CrWn Clothing",
-      "MetaDescription": "Premium men's crew neck t-shirt designed for everyday wear.",
-      "OpenGraphTitle": "CrWn Core Crew Tee",
-      "OpenGraphDescription": "A modern essential built for comfort and style.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -29,19 +25,23 @@
             { "Title": "White", "UrlName": "white", "Sku": "white", "Description": "Clean white" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Men's small", "AttributeType": "Size" },
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Solid black", "AttributeType": "Color" },
+        { "Title": "White", "UrlName": "white", "Sku": "white", "Description": "Clean white", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Heavyweight Hoodie",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-hood-002",
       "UrlName": "crwn-m-hood-002",
       "Price": 88.0,
       "Description": "Heavyweight hoodie designed for warmth, structure, and a street-ready silhouette.",
-      "MetaTitle": "CrWn Heavyweight Hoodie for Men | CrWn Clothing",
-      "MetaDescription": "Men's heavyweight hoodie built for warmth and clean streetwear style.",
-      "OpenGraphTitle": "CrWn Heavyweight Hoodie",
-      "OpenGraphDescription": "Warm, structured, and ready for daily rotation.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -60,19 +60,23 @@
             { "Title": "Olive", "UrlName": "olive", "Sku": "olive", "Description": "Muted olive tone" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "X Large", "UrlName": "x-large", "Sku": "x-large", "Description": "Men's extra large", "AttributeType": "Size" },
+        { "Title": "Charcoal", "UrlName": "charcoal", "Sku": "charcoal", "Description": "Dark charcoal grey", "AttributeType": "Color" },
+        { "Title": "Olive", "UrlName": "olive", "Sku": "olive", "Description": "Muted olive tone", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Utility Overshirt",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-overshirt-003",
       "UrlName": "crwn-m-overshirt-003",
       "Price": 96.0,
       "Description": "Structured overshirt made for layering with a clean utility finish.",
-      "MetaTitle": "CrWn Utility Overshirt for Men | CrWn Clothing",
-      "MetaDescription": "Men's utility overshirt designed for layering, durability, and modern style.",
-      "OpenGraphTitle": "CrWn Utility Overshirt",
-      "OpenGraphDescription": "The layer that upgrades everything underneath it.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -90,19 +94,22 @@
             { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "Khaki", "UrlName": "khaki", "Sku": "khaki", "Description": "Neutral khaki tone", "AttributeType": "Color" },
+        { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Tech Long Sleeve",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-ls-004",
       "UrlName": "crwn-m-ls-004",
       "Price": 54.0,
       "Description": "Lightweight long sleeve built for comfort, breathability, and clean layering.",
-      "MetaTitle": "CrWn Tech Long Sleeve for Men | CrWn Clothing",
-      "MetaDescription": "Men's long sleeve shirt with breathable comfort and a modern fit.",
-      "OpenGraphTitle": "CrWn Tech Long Sleeve",
-      "OpenGraphDescription": "Lightweight performance feel, everyday style.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -121,19 +128,23 @@
             { "Title": "Ink", "UrlName": "ink", "Sku": "ink", "Description": "Deep inky navy" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Men's small", "AttributeType": "Size" },
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "Slate", "UrlName": "slate", "Sku": "slate", "Description": "Cool slate grey", "AttributeType": "Color" },
+        { "Title": "Ink", "UrlName": "ink", "Sku": "ink", "Description": "Deep inky navy", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Essential Jogger",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-jogger-005",
       "UrlName": "crwn-m-jogger-005",
       "Price": 72.0,
       "Description": "Tapered joggers designed for comfort, movement, and clean street style.",
-      "MetaTitle": "CrWn Essential Jogger for Men | CrWn Clothing",
-      "MetaDescription": "Men's jogger pants with a tapered fit built for everyday comfort.",
-      "OpenGraphTitle": "CrWn Essential Jogger",
-      "OpenGraphDescription": "Comfort that moves with you—clean enough to wear out.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -152,19 +163,23 @@
             { "Title": "Heather Grey", "UrlName": "heather-grey", "Sku": "heather-grey", "Description": "Soft heather grey" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "X Large", "UrlName": "x-large", "Sku": "x-large", "Description": "Men's extra large", "AttributeType": "Size" },
+        { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black", "AttributeType": "Color" },
+        { "Title": "Heather Grey", "UrlName": "heather-grey", "Sku": "heather-grey", "Description": "Soft heather grey", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Cargo Pant",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-cargo-006",
       "UrlName": "crwn-m-cargo-006",
       "Price": 98.0,
       "Description": "Modern cargo pant with a tapered silhouette and clean utility pockets.",
-      "MetaTitle": "CrWn Cargo Pants for Men | CrWn Clothing",
-      "MetaDescription": "Men's cargo pants with a modern fit and utility details for everyday wear.",
-      "OpenGraphTitle": "CrWn Cargo Pant",
-      "OpenGraphDescription": "Utility vibes, clean silhouette—built for daily rotation.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Waist",
@@ -183,19 +198,23 @@
             { "Title": "Sand", "UrlName": "sand", "Sku": "sand", "Description": "Warm neutral sand" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "32", "UrlName": "32", "Sku": "32", "Description": "32 inch waist", "AttributeType": "Waist" },
+        { "Title": "34", "UrlName": "34", "Sku": "34", "Description": "34 inch waist", "AttributeType": "Waist" },
+        { "Title": "36", "UrlName": "36", "Sku": "36", "Description": "36 inch waist", "AttributeType": "Waist" },
+        { "Title": "Olive", "UrlName": "olive", "Sku": "olive", "Description": "Muted olive tone", "AttributeType": "Color" },
+        { "Title": "Sand", "UrlName": "sand", "Sku": "sand", "Description": "Warm neutral sand", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Performance Short",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-short-007",
       "UrlName": "crwn-m-short-007",
       "Price": 52.0,
       "Description": "Lightweight performance short with a clean look and everyday comfort.",
-      "MetaTitle": "CrWn Performance Shorts for Men | CrWn Clothing",
-      "MetaDescription": "Men's performance shorts designed for movement, comfort, and casual wear.",
-      "OpenGraphTitle": "CrWn Performance Short",
-      "OpenGraphDescription": "Move easy. Look clean. Built for repeat wear.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -214,19 +233,23 @@
             { "Title": "Stone", "UrlName": "stone", "Sku": "stone", "Description": "Light stone grey" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Men's small", "AttributeType": "Size" },
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black", "AttributeType": "Color" },
+        { "Title": "Stone", "UrlName": "stone", "Sku": "stone", "Description": "Light stone grey", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Quilted Jacket",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-jacket-008",
       "UrlName": "crwn-m-jacket-008",
       "Price": 160.0,
       "Description": "Midweight quilted jacket with clean lines and easy layering.",
-      "MetaTitle": "CrWn Quilted Jacket for Men | CrWn Clothing",
-      "MetaDescription": "Men's quilted jacket with a street-ready fit and midweight warmth.",
-      "OpenGraphTitle": "CrWn Quilted Jacket",
-      "OpenGraphDescription": "Minimal design with midweight warmth—perfect for layering.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -245,19 +268,23 @@
             { "Title": "Graphite", "UrlName": "graphite", "Sku": "graphite", "Description": "Dark grey tone" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "X Large", "UrlName": "x-large", "Sku": "x-large", "Description": "Men's extra large", "AttributeType": "Size" },
+        { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black", "AttributeType": "Color" },
+        { "Title": "Graphite", "UrlName": "graphite", "Sku": "graphite", "Description": "Dark grey tone", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Flannel Shirt",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-flannel-009",
       "UrlName": "crwn-m-flannel-009",
       "Price": 78.0,
       "Description": "Soft flannel with a modern cut—built for warmth and easy layering.",
-      "MetaTitle": "CrWn Flannel Shirt for Men | CrWn Clothing",
-      "MetaDescription": "Men's flannel shirt designed for comfort, warmth, and street-ready layering.",
-      "OpenGraphTitle": "CrWn Flannel Shirt",
-      "OpenGraphDescription": "Classic flannel energy with a modern fit.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -276,19 +303,23 @@
             { "Title": "Grey Plaid", "UrlName": "grey-plaid", "Sku": "grey-plaid", "Description": "Grey and black plaid pattern" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Men's small", "AttributeType": "Size" },
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "Red Plaid", "UrlName": "red-plaid", "Sku": "red-plaid", "Description": "Red and black plaid pattern", "AttributeType": "Color" },
+        { "Title": "Grey Plaid", "UrlName": "grey-plaid", "Sku": "grey-plaid", "Description": "Grey and black plaid pattern", "AttributeType": "Color" }
       ]
     },
+
     {
       "Title": "CrWn Thermal Henley",
-      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "ParentId": "952606c6-af00-4f17-89e2-da9d594ecdf8",
       "Sku": "crwn-m-henley-010",
       "UrlName": "crwn-m-henley-010",
       "Price": 58.0,
       "Description": "Thermal knit henley with subtle texture—made to layer and live in.",
-      "MetaTitle": "CrWn Thermal Henley for Men | CrWn Clothing",
-      "MetaDescription": "Men's thermal henley built for layering, comfort, and everyday wear.",
-      "OpenGraphTitle": "CrWn Thermal Henley",
-      "OpenGraphDescription": "The layer you’ll reach for first—soft, warm, and clean.",
       "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
         {
           "Title": "Size",
@@ -307,6 +338,13 @@
             { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black" }
           ]
         }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Men's small", "AttributeType": "Size" },
+        { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Men's medium", "AttributeType": "Size" },
+        { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Men's large", "AttributeType": "Size" },
+        { "Title": "Cream", "UrlName": "cream", "Sku": "cream", "Description": "Warm cream tone", "AttributeType": "Color" },
+        { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black", "AttributeType": "Color" }
       ]
     }
   ]

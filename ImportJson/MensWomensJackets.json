@@ -1,516 +1,799 @@
 {
-   "Telerik.Sitefinity.DynamicTypes.Model.Products.Product":[
-      {
-         "Title":"CrWn Shield Puffer Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-m-jacket-001",
-         "UrlName":"crwn-m-jacket-001",
-         "Price":180.0,
-         "Description":"Insulated puffer jacket built for warmth with a clean, modern silhouette.",
-         "MetaTitle":"CrWn Shield Puffer Jacket for Men | CrWn Clothing",
-         "MetaDescription":"Men's insulated puffer jacket designed for warmth and everyday street style.",
-         "OpenGraphTitle":"CrWn Shield Puffer Jacket",
-         "OpenGraphDescription":"Warmth without bulk. Built for daily wear.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+  "Telerik.Sitefinity.DynamicTypes.Model.Products.Product": [
+    {
+      "Title": "CrWn Shield Puffer Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-m-jacket-001",
+      "UrlName": "crwn-m-jacket-001",
+      "Price": 180.0,
+      "Description": "Insulated puffer jacket built for warmth with a clean, modern silhouette.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Men's medium"
-                  },
-                  {
-                     "Title":"Large",
-                     "UrlName":"large",
-                     "Sku":"large",
-                     "Description":"Men's large"
-                  },
-                  {
-                     "Title":"X Large",
-                     "UrlName":"x-large",
-                     "Sku":"x-large",
-                     "Description":"Men's extra large"
-                  }
-               ]
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Men's medium"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Black",
-                     "UrlName":"black",
-                     "Sku":"black",
-                     "Description":"Classic black"
-                  },
-                  {
-                     "Title":"Graphite",
-                     "UrlName":"graphite",
-                     "Sku":"graphite",
-                     "Description":"Dark grey tone"
-                  }
-               ]
-            }
-         ]
-      },
-      {
-         "Title":"CrWn Field Utility Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-m-jacket-002",
-         "UrlName":"crwn-m-jacket-002",
-         "Price":165.0,
-         "Description":"Midweight field jacket with a structured fit and clean utility details.",
-         "MetaTitle":"CrWn Field Utility Jacket for Men | CrWn Clothing",
-         "MetaDescription":"Men's field jacket blending durability, structure, and modern style.",
-         "OpenGraphTitle":"CrWn Field Utility Jacket",
-         "OpenGraphDescription":"Utility-inspired with a clean, tailored edge.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
-            {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Men's medium"
-                  },
-                  {
-                     "Title":"Large",
-                     "UrlName":"large",
-                     "Sku":"large",
-                     "Description":"Men's large"
-                  }
-               ]
+              "Title": "Large",
+              "UrlName": "large",
+              "Sku": "large",
+              "Description": "Men's large"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Olive",
-                     "UrlName":"olive",
-                     "Sku":"olive",
-                     "Description":"Muted olive tone"
-                  },
-                  {
-                     "Title":"Sand",
-                     "UrlName":"sand",
-                     "Sku":"sand",
-                     "Description":"Warm neutral sand"
-                  }
-               ]
+              "Title": "X Large",
+              "UrlName": "x-large",
+              "Sku": "x-large",
+              "Description": "Men's extra large"
             }
-         ]
-      },
-      {
-         "Title":"CrWn Storm Shell Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-m-jacket-003",
-         "UrlName":"crwn-m-jacket-003",
-         "Price":190.0,
-         "Description":"Lightweight weather-resistant shell designed for movement and protection.",
-         "MetaTitle":"CrWn Storm Shell Jacket for Men | CrWn Clothing",
-         "MetaDescription":"Men's lightweight shell jacket built for weather and mobility.",
-         "OpenGraphTitle":"CrWn Storm Shell Jacket",
-         "OpenGraphDescription":"Built to move. Ready for weather.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Men's medium"
-                  },
-                  {
-                     "Title":"Large",
-                     "UrlName":"large",
-                     "Sku":"large",
-                     "Description":"Men's large"
-                  }
-               ]
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Midnight",
-                     "UrlName":"midnight",
-                     "Sku":"midnight",
-                     "Description":"Deep navy tone"
-                  },
-                  {
-                     "Title":"Black",
-                     "UrlName":"black",
-                     "Sku":"black",
-                     "Description":"Classic black"
-                  }
-               ]
+              "Title": "Graphite",
+              "UrlName": "graphite",
+              "Sku": "graphite",
+              "Description": "Dark grey tone"
             }
-         ]
-      },
-      {
-         "Title":"CrWn Quilted Liner Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-m-jacket-004",
-         "UrlName":"crwn-m-jacket-004",
-         "Price":150.0,
-         "Description":"Light quilted liner jacket made for layering or stand-alone wear.",
-         "MetaTitle":"CrWn Quilted Liner Jacket for Men | CrWn Clothing",
-         "MetaDescription":"Men's quilted liner jacket designed for flexible layering.",
-         "OpenGraphTitle":"CrWn Quilted Liner Jacket",
-         "OpenGraphDescription":"Layer it up. Wear it solo.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Men's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Large",
+          "UrlName": "large",
+          "Sku": "large",
+          "Description": "Men's large",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "X Large",
+          "UrlName": "x-large",
+          "Sku": "x-large",
+          "Description": "Men's extra large",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Graphite",
+          "UrlName": "graphite",
+          "Sku": "graphite",
+          "Description": "Dark grey tone",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Field Utility Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-m-jacket-002",
+      "UrlName": "crwn-m-jacket-002",
+      "Price": 165.0,
+      "Description": "Midweight field jacket with a structured fit and clean utility details.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Men's medium"
-                  },
-                  {
-                     "Title":"Large",
-                     "UrlName":"large",
-                     "Sku":"large",
-                     "Description":"Men's large"
-                  }
-               ]
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Men's medium"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Ink",
-                     "UrlName":"ink",
-                     "Sku":"ink",
-                     "Description":"Deep inky navy"
-                  },
-                  {
-                     "Title":"Stone",
-                     "UrlName":"stone",
-                     "Sku":"stone",
-                     "Description":"Light neutral stone"
-                  }
-               ]
+              "Title": "Large",
+              "UrlName": "large",
+              "Sku": "large",
+              "Description": "Men's large"
             }
-         ]
-      },
-      {
-         "Title":"CrWn Core Zip Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-m-jacket-005",
-         "UrlName":"crwn-m-jacket-005",
-         "Price":138.0,
-         "Description":"Clean zip-front jacket with a structured fit for everyday wear.",
-         "MetaTitle":"CrWn Core Zip Jacket for Men | CrWn Clothing",
-         "MetaDescription":"Men's zip-front jacket with a clean, modern silhouette.",
-         "OpenGraphTitle":"CrWn Core Zip Jacket",
-         "OpenGraphDescription":"Everyday structure, clean lines.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Men's medium"
-                  },
-                  {
-                     "Title":"Large",
-                     "UrlName":"large",
-                     "Sku":"large",
-                     "Description":"Men's large"
-                  }
-               ]
+              "Title": "Olive",
+              "UrlName": "olive",
+              "Sku": "olive",
+              "Description": "Muted olive tone"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Black",
-                     "UrlName":"black",
-                     "Sku":"black",
-                     "Description":"Classic black"
-                  },
-                  {
-                     "Title":"Charcoal",
-                     "UrlName":"charcoal",
-                     "Sku":"charcoal",
-                     "Description":"Dark charcoal grey"
-                  }
-               ]
+              "Title": "Sand",
+              "UrlName": "sand",
+              "Sku": "sand",
+              "Description": "Warm neutral sand"
             }
-         ]
-      },
-      {
-         "Title":"CrWn Cloud Puffer Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-w-jacket-006",
-         "UrlName":"crwn-w-jacket-006",
-         "Price":178.0,
-         "Description":"Lightweight puffer jacket with a flattering fit and soft insulation.",
-         "MetaTitle":"CrWn Cloud Puffer Jacket for Women | CrWn Clothing",
-         "MetaDescription":"Women's lightweight puffer jacket designed for warmth and everyday comfort.",
-         "OpenGraphTitle":"CrWn Cloud Puffer Jacket",
-         "OpenGraphDescription":"Soft warmth. Clean profile.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Men's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Large",
+          "UrlName": "large",
+          "Sku": "large",
+          "Description": "Men's large",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Olive",
+          "UrlName": "olive",
+          "Sku": "olive",
+          "Description": "Muted olive tone",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Sand",
+          "UrlName": "sand",
+          "Sku": "sand",
+          "Description": "Warm neutral sand",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Storm Shell Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-m-jacket-003",
+      "UrlName": "crwn-m-jacket-003",
+      "Price": 190.0,
+      "Description": "Lightweight weather-resistant shell designed for movement and protection.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Small",
-                     "UrlName":"small",
-                     "Sku":"small",
-                     "Description":"Women's small"
-                  },
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Women's medium"
-                  },
-                  {
-                     "Title":"Large",
-                     "UrlName":"large",
-                     "Sku":"large",
-                     "Description":"Women's large"
-                  }
-               ]
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Men's medium"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Bone",
-                     "UrlName":"bone",
-                     "Sku":"bone",
-                     "Description":"Warm neutral bone"
-                  },
-                  {
-                     "Title":"Black",
-                     "UrlName":"black",
-                     "Sku":"black",
-                     "Description":"Classic black"
-                  }
-               ]
+              "Title": "Large",
+              "UrlName": "large",
+              "Sku": "large",
+              "Description": "Men's large"
             }
-         ]
-      },
-      {
-         "Title":"CrWn Quilted Midweight Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-w-jacket-007",
-         "UrlName":"crwn-w-jacket-007",
-         "Price":158.0,
-         "Description":"Midweight quilted jacket with clean lines and an easy, modern fit.",
-         "MetaTitle":"CrWn Quilted Jacket for Women | CrWn Clothing",
-         "MetaDescription":"Women's quilted jacket offering warmth without bulk.",
-         "OpenGraphTitle":"CrWn Quilted Midweight Jacket",
-         "OpenGraphDescription":"Minimal warmth for everyday layering.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Small",
-                     "UrlName":"small",
-                     "Sku":"small",
-                     "Description":"Women's small"
-                  },
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Women's medium"
-                  }
-               ]
+              "Title": "Midnight",
+              "UrlName": "midnight",
+              "Sku": "midnight",
+              "Description": "Deep navy tone"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Stone",
-                     "UrlName":"stone",
-                     "Sku":"stone",
-                     "Description":"Light stone grey"
-                  },
-                  {
-                     "Title":"Onyx",
-                     "UrlName":"onyx",
-                     "Sku":"onyx",
-                     "Description":"Deep black finish"
-                  }
-               ]
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
             }
-         ]
-      },
-      {
-         "Title":"CrWn Soft Shell Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-w-jacket-008",
-         "UrlName":"crwn-w-jacket-008",
-         "Price":168.0,
-         "Description":"Streamlined soft shell jacket built for movement and light weather protection.",
-         "MetaTitle":"CrWn Soft Shell Jacket for Women | CrWn Clothing",
-         "MetaDescription":"Women's soft shell jacket combining flexibility and clean design.",
-         "OpenGraphTitle":"CrWn Soft Shell Jacket",
-         "OpenGraphDescription":"Flexible feel. Clean finish.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Men's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Large",
+          "UrlName": "large",
+          "Sku": "large",
+          "Description": "Men's large",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Midnight",
+          "UrlName": "midnight",
+          "Sku": "midnight",
+          "Description": "Deep navy tone",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Quilted Liner Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-m-jacket-004",
+      "UrlName": "crwn-m-jacket-004",
+      "Price": 150.0,
+      "Description": "Light quilted liner jacket made for layering or stand-alone wear.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Small",
-                     "UrlName":"small",
-                     "Sku":"small",
-                     "Description":"Women's small"
-                  },
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Women's medium"
-                  }
-               ]
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Men's medium"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Slate",
-                     "UrlName":"slate",
-                     "Sku":"slate",
-                     "Description":"Cool slate grey"
-                  },
-                  {
-                     "Title":"Midnight Navy",
-                     "UrlName":"midnight-navy",
-                     "Sku":"midnight-navy",
-                     "Description":"Deep navy tone"
-                  }
-               ]
+              "Title": "Large",
+              "UrlName": "large",
+              "Sku": "large",
+              "Description": "Men's large"
             }
-         ]
-      },
-      {
-         "Title":"CrWn Wrap Front Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-w-jacket-009",
-         "UrlName":"crwn-w-jacket-009",
-         "Price":172.0,
-         "Description":"Wrap-front jacket with a modern drape and sculpted silhouette.",
-         "MetaTitle":"CrWn Wrap Front Jacket for Women | CrWn Clothing",
-         "MetaDescription":"Women's wrap-front jacket with a modern, sculpted fit.",
-         "OpenGraphTitle":"CrWn Wrap Front Jacket",
-         "OpenGraphDescription":"Soft structure with elevated lines.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Small",
-                     "UrlName":"small",
-                     "Sku":"small",
-                     "Description":"Women's small"
-                  },
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Women's medium"
-                  }
-               ]
+              "Title": "Ink",
+              "UrlName": "ink",
+              "Sku": "ink",
+              "Description": "Deep inky navy"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Taupe",
-                     "UrlName":"taupe",
-                     "Sku":"taupe",
-                     "Description":"Warm taupe neutral"
-                  },
-                  {
-                     "Title":"Black",
-                     "UrlName":"black",
-                     "Sku":"black",
-                     "Description":"Classic black"
-                  }
-               ]
+              "Title": "Stone",
+              "UrlName": "stone",
+              "Sku": "stone",
+              "Description": "Light neutral stone"
             }
-         ]
-      },
-      {
-         "Title":"CrWn Everyday Zip Jacket",
-         "ParentId":"e9f6109e-6fcf-48c8-ada2-8c106618a260",
-         "Sku":"crwn-w-jacket-010",
-         "UrlName":"crwn-w-jacket-010",
-         "Price":142.0,
-         "Description":"Clean zip jacket designed for everyday layering and movement.",
-         "MetaTitle":"CrWn Everyday Zip Jacket for Women | CrWn Clothing",
-         "MetaDescription":"Women's zip jacket with a clean, modern silhouette.",
-         "OpenGraphTitle":"CrWn Everyday Zip Jacket",
-         "OpenGraphDescription":"The jacket that works with everything.",
-         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Men's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Large",
+          "UrlName": "large",
+          "Sku": "large",
+          "Description": "Men's large",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Ink",
+          "UrlName": "ink",
+          "Sku": "ink",
+          "Description": "Deep inky navy",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Stone",
+          "UrlName": "stone",
+          "Sku": "stone",
+          "Description": "Light neutral stone",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Core Zip Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-m-jacket-005",
+      "UrlName": "crwn-m-jacket-005",
+      "Price": 138.0,
+      "Description": "Clean zip-front jacket with a structured fit for everyday wear.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
             {
-               "Title":"Size",
-               "UrlName":"size",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Small",
-                     "UrlName":"small",
-                     "Sku":"small",
-                     "Description":"Women's small"
-                  },
-                  {
-                     "Title":"Medium",
-                     "UrlName":"medium",
-                     "Sku":"medium",
-                     "Description":"Women's medium"
-                  }
-               ]
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Men's medium"
             },
             {
-               "Title":"Color",
-               "UrlName":"color",
-               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
-                  {
-                     "Title":"Cream",
-                     "UrlName":"cream",
-                     "Sku":"cream",
-                     "Description":"Warm cream tone"
-                  },
-                  {
-                     "Title":"Charcoal",
-                     "UrlName":"charcoal",
-                     "Sku":"charcoal",
-                     "Description":"Dark charcoal grey"
-                  }
-               ]
+              "Title": "Large",
+              "UrlName": "large",
+              "Sku": "large",
+              "Description": "Men's large"
             }
-         ]
-      }
-   ]
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
+            },
+            {
+              "Title": "Charcoal",
+              "UrlName": "charcoal",
+              "Sku": "charcoal",
+              "Description": "Dark charcoal grey"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Men's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Large",
+          "UrlName": "large",
+          "Sku": "large",
+          "Description": "Men's large",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Charcoal",
+          "UrlName": "charcoal",
+          "Sku": "charcoal",
+          "Description": "Dark charcoal grey",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Cloud Puffer Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-w-jacket-006",
+      "UrlName": "crwn-w-jacket-006",
+      "Price": 178.0,
+      "Description": "Lightweight puffer jacket with a flattering fit and soft insulation.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Small",
+              "UrlName": "small",
+              "Sku": "small",
+              "Description": "Women's small"
+            },
+            {
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Women's medium"
+            },
+            {
+              "Title": "Large",
+              "UrlName": "large",
+              "Sku": "large",
+              "Description": "Women's large"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Bone",
+              "UrlName": "bone",
+              "Sku": "bone",
+              "Description": "Warm neutral bone"
+            },
+            {
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Small",
+          "UrlName": "small",
+          "Sku": "small",
+          "Description": "Women's small",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Women's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Large",
+          "UrlName": "large",
+          "Sku": "large",
+          "Description": "Women's large",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Bone",
+          "UrlName": "bone",
+          "Sku": "bone",
+          "Description": "Warm neutral bone",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Quilted Midweight Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-w-jacket-007",
+      "UrlName": "crwn-w-jacket-007",
+      "Price": 158.0,
+      "Description": "Midweight quilted jacket with clean lines and an easy, modern fit.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Small",
+              "UrlName": "small",
+              "Sku": "small",
+              "Description": "Women's small"
+            },
+            {
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Women's medium"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Stone",
+              "UrlName": "stone",
+              "Sku": "stone",
+              "Description": "Light stone grey"
+            },
+            {
+              "Title": "Onyx",
+              "UrlName": "onyx",
+              "Sku": "onyx",
+              "Description": "Deep black finish"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Small",
+          "UrlName": "small",
+          "Sku": "small",
+          "Description": "Women's small",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Women's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Stone",
+          "UrlName": "stone",
+          "Sku": "stone",
+          "Description": "Light stone grey",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Onyx",
+          "UrlName": "onyx",
+          "Sku": "onyx",
+          "Description": "Deep black finish",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Soft Shell Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-w-jacket-008",
+      "UrlName": "crwn-w-jacket-008",
+      "Price": 168.0,
+      "Description": "Streamlined soft shell jacket built for movement and light weather protection.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Small",
+              "UrlName": "small",
+              "Sku": "small",
+              "Description": "Women's small"
+            },
+            {
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Women's medium"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Slate",
+              "UrlName": "slate",
+              "Sku": "slate",
+              "Description": "Cool slate grey"
+            },
+            {
+              "Title": "Midnight Navy",
+              "UrlName": "midnight-navy",
+              "Sku": "midnight-navy",
+              "Description": "Deep navy tone"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Small",
+          "UrlName": "small",
+          "Sku": "small",
+          "Description": "Women's small",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Women's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Slate",
+          "UrlName": "slate",
+          "Sku": "slate",
+          "Description": "Cool slate grey",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Midnight Navy",
+          "UrlName": "midnight-navy",
+          "Sku": "midnight-navy",
+          "Description": "Deep navy tone",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Wrap Front Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-w-jacket-009",
+      "UrlName": "crwn-w-jacket-009",
+      "Price": 172.0,
+      "Description": "Wrap-front jacket with a modern drape and sculpted silhouette.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Small",
+              "UrlName": "small",
+              "Sku": "small",
+              "Description": "Women's small"
+            },
+            {
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Women's medium"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Taupe",
+              "UrlName": "taupe",
+              "Sku": "taupe",
+              "Description": "Warm taupe neutral"
+            },
+            {
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Classic black"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Small",
+          "UrlName": "small",
+          "Sku": "small",
+          "Description": "Women's small",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Women's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Taupe",
+          "UrlName": "taupe",
+          "Sku": "taupe",
+          "Description": "Warm taupe neutral",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Black",
+          "UrlName": "black",
+          "Sku": "black",
+          "Description": "Classic black",
+          "AttributeType": "Color"
+        }
+      ]
+    },
+
+    {
+      "Title": "CrWn Everyday Zip Jacket",
+      "ParentId": "e9f6109e-6fcf-48c8-ada2-8c106618a260",
+      "Sku": "crwn-w-jacket-010",
+      "UrlName": "crwn-w-jacket-010",
+      "Price": 142.0,
+      "Description": "Clean zip jacket designed for everyday layering and movement.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Small",
+              "UrlName": "small",
+              "Sku": "small",
+              "Description": "Women's small"
+            },
+            {
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Women's medium"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Cream",
+              "UrlName": "cream",
+              "Sku": "cream",
+              "Description": "Warm cream tone"
+            },
+            {
+              "Title": "Charcoal",
+              "UrlName": "charcoal",
+              "Sku": "charcoal",
+              "Description": "Dark charcoal grey"
+            }
+          ]
+        }
+      ],
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantAttribute": [
+        {
+          "Title": "Small",
+          "UrlName": "small",
+          "Sku": "small",
+          "Description": "Women's small",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Medium",
+          "UrlName": "medium",
+          "Sku": "medium",
+          "Description": "Women's medium",
+          "AttributeType": "Size"
+        },
+        {
+          "Title": "Cream",
+          "UrlName": "cream",
+          "Sku": "cream",
+          "Description": "Warm cream tone",
+          "AttributeType": "Color"
+        },
+        {
+          "Title": "Charcoal",
+          "UrlName": "charcoal",
+          "Sku": "charcoal",
+          "Description": "Dark charcoal grey",
+          "AttributeType": "Color"
+        }
+      ]
+    }
+  ]
 }
