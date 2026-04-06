@@ -1,0 +1,444 @@
+{
+   "Telerik.Sitefinity.DynamicTypes.Model.Products.Product":[
+      {
+         "Title":"CrWn Classic Snapback",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-m-hat-001",
+         "UrlName":"crwn-m-hat-001",
+         "Price":32.0,
+         "Description":"Structured snapback with a flat brim and clean street profile.",
+         "MetaTitle":"CrWn Classic Snapback for Men | CrWn Clothing",
+         "MetaDescription":"Men's classic snapback hat designed for modern streetwear.",
+         "OpenGraphTitle":"CrWn Classic Snapback",
+         "OpenGraphDescription":"Structured fit with a clean street edge.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Adjustable",
+                     "UrlName":"adjustable",
+                     "Sku":"adjustable",
+                     "Description":"One size fits most"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Black",
+                     "UrlName":"black",
+                     "Sku":"black",
+                     "Description":"Classic black"
+                  },
+                  {
+                     "Title":"Heather Grey",
+                     "UrlName":"heather-grey",
+                     "Sku":"heather-grey",
+                     "Description":"Neutral heather grey"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Minimal Dad Hat",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-m-hat-002",
+         "UrlName":"crwn-m-hat-002",
+         "Price":28.0,
+         "Description":"Relaxed dad hat with a curved brim and laid-back fit.",
+         "MetaTitle":"CrWn Minimal Dad Hat for Men | CrWn Clothing",
+         "MetaDescription":"Men's dad hat with a relaxed fit and minimalist design.",
+         "OpenGraphTitle":"CrWn Minimal Dad Hat",
+         "OpenGraphDescription":"Easygoing style with everyday comfort.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Adjustable",
+                     "UrlName":"adjustable",
+                     "Sku":"adjustable",
+                     "Description":"Adjustable strap back"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Olive",
+                     "UrlName":"olive",
+                     "Sku":"olive",
+                     "Description":"Muted olive tone"
+                  },
+                  {
+                     "Title":"Sand",
+                     "UrlName":"sand",
+                     "Sku":"sand",
+                     "Description":"Warm sand neutral"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Everyday Beanie",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-m-hat-003",
+         "UrlName":"crwn-m-hat-003",
+         "Price":26.0,
+         "Description":"Soft knit beanie built for warmth with a clean, minimal look.",
+         "MetaTitle":"CrWn Everyday Beanie for Men | CrWn Clothing",
+         "MetaDescription":"Men's knit beanie designed for warmth and everyday wear.",
+         "OpenGraphTitle":"CrWn Everyday Beanie",
+         "OpenGraphDescription":"Clean knit warmth for cold days.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"One Size",
+                     "UrlName":"one-size",
+                     "Sku":"one-size",
+                     "Description":"Stretch knit, one size fits most"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Charcoal",
+                     "UrlName":"charcoal",
+                     "Sku":"charcoal",
+                     "Description":"Dark charcoal grey"
+                  },
+                  {
+                     "Title":"Black",
+                     "UrlName":"black",
+                     "Sku":"black",
+                     "Description":"Classic black"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Performance Cap",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-m-hat-004",
+         "UrlName":"crwn-m-hat-004",
+         "Price":34.0,
+         "Description":"Lightweight performance cap with moisture-wicking fabric.",
+         "MetaTitle":"CrWn Performance Cap for Men | CrWn Clothing",
+         "MetaDescription":"Men's performance cap built for movement and comfort.",
+         "OpenGraphTitle":"CrWn Performance Cap",
+         "OpenGraphDescription":"Built to move. Designed to breathe.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Adjustable",
+                     "UrlName":"adjustable",
+                     "Sku":"adjustable",
+                     "Description":"Back strap adjustable fit"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Black",
+                     "UrlName":"black",
+                     "Sku":"black",
+                     "Description":"Classic black"
+                  },
+                  {
+                     "Title":"Midnight Navy",
+                     "UrlName":"midnight-navy",
+                     "Sku":"midnight-navy",
+                     "Description":"Deep navy tone"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Utility Bucket Hat",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-m-hat-005",
+         "UrlName":"crwn-m-hat-005",
+         "Price":30.0,
+         "Description":"Modern bucket hat with structured brim and utility styling.",
+         "MetaTitle":"CrWn Utility Bucket Hat for Men | CrWn Clothing",
+         "MetaDescription":"Men's bucket hat with utility-inspired design.",
+         "OpenGraphTitle":"CrWn Utility Bucket Hat",
+         "OpenGraphDescription":"Laid-back style with modern edge.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"One Size",
+                     "UrlName":"one-size",
+                     "Sku":"one-size",
+                     "Description":"Standard bucket fit"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Khaki",
+                     "UrlName":"khaki",
+                     "Sku":"khaki",
+                     "Description":"Neutral khaki tone"
+                  },
+                  {
+                     "Title":"Black",
+                     "UrlName":"black",
+                     "Sku":"black",
+                     "Description":"Classic black"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Soft Knit Beanie",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-w-hat-006",
+         "UrlName":"crwn-w-hat-006",
+         "Price":26.0,
+         "Description":"Soft knit beanie with a relaxed fit and cozy feel.",
+         "MetaTitle":"CrWn Soft Knit Beanie for Women | CrWn Clothing",
+         "MetaDescription":"Women's knit beanie designed for warmth and everyday comfort.",
+         "OpenGraphTitle":"CrWn Soft Knit Beanie",
+         "OpenGraphDescription":"Soft warmth with an easy fit.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"One Size",
+                     "UrlName":"one-size",
+                     "Sku":"one-size",
+                     "Description":"Stretch knit, one size fits most"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Cream",
+                     "UrlName":"cream",
+                     "Sku":"cream",
+                     "Description":"Warm cream tone"
+                  },
+                  {
+                     "Title":"Charcoal",
+                     "UrlName":"charcoal",
+                     "Sku":"charcoal",
+                     "Description":"Dark charcoal grey"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Low Profile Cap",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-w-hat-007",
+         "UrlName":"crwn-w-hat-007",
+         "Price":30.0,
+         "Description":"Low-profile cap with a soft crown and curved brim.",
+         "MetaTitle":"CrWn Low Profile Cap for Women | CrWn Clothing",
+         "MetaDescription":"Women's low-profile cap with a clean, everyday look.",
+         "OpenGraphTitle":"CrWn Low Profile Cap",
+         "OpenGraphDescription":"Clean fit with an easy curve.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Adjustable",
+                     "UrlName":"adjustable",
+                     "Sku":"adjustable",
+                     "Description":"Adjustable back strap"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Stone",
+                     "UrlName":"stone",
+                     "Sku":"stone",
+                     "Description":"Light stone neutral"
+                  },
+                  {
+                     "Title":"Black",
+                     "UrlName":"black",
+                     "Sku":"black",
+                     "Description":"Classic black"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Relaxed Bucket Hat",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-w-hat-008",
+         "UrlName":"crwn-w-hat-008",
+         "Price":30.0,
+         "Description":"Relaxed bucket hat with a soft drape and modern look.",
+         "MetaTitle":"CrWn Relaxed Bucket Hat for Women | CrWn Clothing",
+         "MetaDescription":"Women's bucket hat with a relaxed fit and modern styling.",
+         "OpenGraphTitle":"CrWn Relaxed Bucket Hat",
+         "OpenGraphDescription":"Effortless style with a relaxed feel.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"One Size",
+                     "UrlName":"one-size",
+                     "Sku":"one-size",
+                     "Description":"Standard bucket fit"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Taupe",
+                     "UrlName":"taupe",
+                     "Sku":"taupe",
+                     "Description":"Warm taupe neutral"
+                  },
+                  {
+                     "Title":"Olive",
+                     "UrlName":"olive",
+                     "Sku":"olive",
+                     "Description":"Muted olive tone"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Ribbed Cuff Beanie",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-w-hat-009",
+         "UrlName":"crwn-w-hat-009",
+         "Price":28.0,
+         "Description":"Ribbed cuff beanie with a snug fit and clean finish.",
+         "MetaTitle":"CrWn Ribbed Cuff Beanie for Women | CrWn Clothing",
+         "MetaDescription":"Women's ribbed cuff beanie designed for warmth and style.",
+         "OpenGraphTitle":"CrWn Ribbed Cuff Beanie",
+         "OpenGraphDescription":"Structured warmth with a classic cuff.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"One Size",
+                     "UrlName":"one-size",
+                     "Sku":"one-size",
+                     "Description":"Stretch rib knit"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Black",
+                     "UrlName":"black",
+                     "Sku":"black",
+                     "Description":"Classic black"
+                  },
+                  {
+                     "Title":"Cocoa",
+                     "UrlName":"cocoa",
+                     "Sku":"cocoa",
+                     "Description":"Warm cocoa brown"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "Title":"CrWn Everyday Cap",
+         "ParentId":"15a150eb-d220-438e-aeba-7c7b001acaa8",
+         "Sku":"crwn-w-hat-010",
+         "UrlName":"crwn-w-hat-010",
+         "Price":32.0,
+         "Description":"Everyday cap with a soft structure and clean, modern profile.",
+         "MetaTitle":"CrWn Everyday Cap for Women | CrWn Clothing",
+         "MetaDescription":"Women's everyday cap designed for comfort and versatility.",
+         "OpenGraphTitle":"CrWn Everyday Cap",
+         "OpenGraphDescription":"Easy fit, clean look—goes with everything.",
+         "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup":[
+            {
+               "Title":"Fit",
+               "UrlName":"fit",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Adjustable",
+                     "UrlName":"adjustable",
+                     "Sku":"adjustable",
+                     "Description":"Adjustable back closure"
+                  }
+               ]
+            },
+            {
+               "Title":"Color",
+               "UrlName":"color",
+               "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant":[
+                  {
+                     "Title":"Bone",
+                     "UrlName":"bone",
+                     "Sku":"bone",
+                     "Description":"Warm neutral bone"
+                  },
+                  {
+                     "Title":"Charcoal",
+                     "UrlName":"charcoal",
+                     "Sku":"charcoal",
+                     "Description":"Dark charcoal grey"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

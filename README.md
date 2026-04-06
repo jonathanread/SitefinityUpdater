@@ -12,8 +12,13 @@ Console application for batch updating rich text content fields with specialized
 ### 2. SitefinityContentUpdater.Relationships
 Console application for batch building relationships between content items using CSV-based mapping.
 
-### 3. SitefinityContentUpdater.Core
-Shared class library containing core functionality, helpers, and REST client utilities used by both console applications.
+### 3. ImportJson
+Console application for importing JSON into Sitefinity content types, including optional nested child content creation via `Child_<ContentType>` fields.
+
+- See full docs: [ImportJson README](ImportJson/README.md)
+
+### 4. SitefinityContentUpdater.Core
+Shared class library containing core functionality, helpers, and REST client utilities used by the console applications.
 
 ---
 
@@ -70,6 +75,53 @@ f9c59b18-eaf3-4813-893b-307a1eddd46a,newsitems,a1b2c3d4-e5f6-7890-abcd-ef1234567
 e4d3c2b1-a9f8-7654-3210-fedcba987654,newsitems,b2c3d4e5-f6a7-8901-bcde-f23456789012;c3d4e5f6-a7b8-9012-cdef-345678901234
 12345678-1234-1234-1234-123456789012,newsitems,23456789-2345-2345-2345-234567890123|34567890-3456-3456-3456-345678901234
 ```
+
+---
+
+## ImportJson
+
+A console application for importing JSON content to Sitefinity using the REST SDK.
+
+### JSON Structure
+
+The root JSON object should be:
+
+```json
+{
+  "SitefinityContentTypeName": [
+    {
+      "Title": "Parent 1",
+      "Description": "Any fields are sent as-is",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Modules.Products": [
+        {
+          "Title": "Child item A",
+          "Price": 19.99
+        },
+        {
+          "Title": "Child item B",
+          "Price": 29.99
+        }
+      ]
+    },
+    {
+      "Title": "Parent 2",
+      "Child_newsitems": {
+        "Title": "Single child object also supported"
+      }
+    }
+  ]
+}
+```
+
+### Notes
+
+- Top-level key = Sitefinity content type name.
+- Value must be an array of objects.
+- Any field starting with `Child_` is treated as child content:
+  - The part after `Child_` is the child Sitefinity content type name.
+- Parent items are created first.
+- Child items are created after and receive `ParentId` from the created parent item ID.
+- All non-child fields are sent to Sitefinity exactly as provided.
 
 ---
 
@@ -141,12 +193,29 @@ Both console applications use similar configuration in their respective `appsett
 
 ```json
 {
+  "SourceSite": {
+    "Url": "https://source-sitefinity-site.com/sf/system/",
+    "AccessKey": "source-access-key-here",
+    "SiteId": "source-site-id-guid-here"
+  },
+  "TargetSite": {
+    "Url": "https://target-sitefinity-site.com/sf/system/",
+    "AccessKey": "target-access-key-here",
+    "SiteId": "target-site-id-guid-here"
+  }
+}
+```
+
+### ImportJson - appsettings.json
+
+```json
+{
   "Sitefinity": {
     "Url": "https://your-sitefinity-site.com/sf/system/",
     "AccessKey": "your-access-key-here",
     "SiteId": "your-site-id-guid-here"
   },
-  "RelationshipCsvFilePath": "relationships.csv"
+  "JsonFilePath": "import.json"
 }
 ```
 
@@ -156,7 +225,7 @@ Both console applications use similar configuration in their respective `appsett
 - **AccessKey**: Your Sitefinity REST API access key (base64 encoded)
 - **SiteId**: The GUID of the site you want to connect to
 - **CsvFilePath**: Path to the CSV file containing image ID mappings
-- **RelationshipCsvFilePath**: Path to the CSV file containing relationship mappings
+- **JsonFilePath**: Path to the JSON file used by `ImportJson`
 
 > **Note**: If Sitefinity credentials are missing from the configuration file, the applications will prompt you to enter them at runtime.
 
@@ -189,6 +258,12 @@ dotnet run --project SitefinityUpdater
 dotnet run --project SitefinityContentUpdater.Relationships
 ```
 
+### Running ImportJson
+
+```bash
+dotnet run --project ImportJson -- "path/to/import.json"
+```
+
 ## Solution Structure
 
 ```
@@ -200,7 +275,9 @@ SitefinityUpdater/
 ??? SitefinityContentUpdater.Relationships/      # Relationship builder console app
 ?   ??? Program.cs
 ?   ??? appsettings.json
-?   ??? relationships.csv
+??? ImportJson/                                  # JSON import console app
+?   ??? Program.cs
+?   ??? appsettings.json
 ??? SitefinityUpdater.Core/                      # Shared core library
 ?   ??? Helpers/
 ?   ?   ??? ConfigurationHelper.cs
@@ -259,100 +336,7 @@ dotnet test --verbosity normal
 dotnet test --filter "FullyQualifiedName~RelationshipProcessorTests"
 ```
 
-**Test Coverage:**
-- ? 84 total tests
-- Unit tests for all helpers and core components
-- Integration tests for workflows
-- CSV parsing and validation tests
-- Console I/O management tests
-
 See [SitefinityUpdater.Core.Tests/README.md](SitefinityUpdater.Core.Tests/README.md) for detailed test documentation.
-
-## Best Practices
-
-### Testing Strategy
-
-1. **Always start with test mode** on a single item/relationship
-2. Review the console output carefully for any warnings or errors
-3. If test looks good, run in full mode
-4. Monitor the batch update/processing progress
-
-### CSV File Management
-
-1. **Validate data**: Ensure all GUIDs are valid before processing
-2. **Version control**: Keep CSV files in version control for traceability
-3. **Backup**: Always backup CSV files before making changes
-4. **Document**: Use meaningful names and titles in CSV files
-
-### Safety
-
-- Both tools only modify items/relationships explicitly defined in the CSV
-- All operations are logged with detailed information
-- Test mode allows validation before bulk updates
-- CSV files are optional for the content updater (falls back to title matching)
-
-### Performance
-
-- Batch size of 50 items balances performance and memory
-- Concurrent operations using `Task.WhenAll` for efficiency
-- CSV loaded once per batch to avoid repeated file I/O
-- Async operations throughout for better responsiveness
-
-## Security Considerations
-
-- **Never commit `appsettings.json` with real credentials to source control**
-- Add `appsettings.json` to `.gitignore` (or use `appsettings.Development.json`)
-- Use environment-specific configuration files for different environments
-- Consider using Azure Key Vault or environment variables for production credentials
-- The access key is base64 encoded but should still be treated as a secret
-
-## Common Use Cases
-
-### Content Migration
-1. Export image mappings from source Sitefinity instance
-2. Create CSV with source and target image IDs
-3. Run **SitefinityContentUpdater** to update image references
-4. Create relationship mappings CSV
-5. Run **SitefinityContentUpdater.Relationships** to rebuild relationships
-
-### Bulk Operations
-1. Use **SitefinityContentUpdater** for bulk image reference updates
-2. Use **SitefinityContentUpdater.Relationships** for bulk relationship creation
-3. Test mode for validation before full processing
-
-### Environment Promotion
-1. Map development IDs to production equivalents in CSV files
-2. Run tools on target environment to update references and relationships
-
-## Troubleshooting
-
-### Connection Issues
-```
-Connection failed or site validation failed
-```
-**Solution**: 
-- Verify URL is correct and ends with `/sf/system/`
-- Ensure access key is valid and has appropriate permissions
-- Check that Sitefinity REST API is enabled
-- Verify Site ID is correct
-
-### CSV Issues
-```
-CSV file not found at: [path]
-```
-**Solution**: 
-- Ensure the CSV file exists in the application directory
-- Update CSV path in `appsettings.json`
-- Check file name and extension
-
-### Invalid Data
-```
-Invalid GUID format: [value]
-```
-**Solution**: 
-- Validate all GUIDs in CSV files
-- Remove extra spaces or special characters
-- Use proper CSV escaping for special characters
 
 ## Contributing
 

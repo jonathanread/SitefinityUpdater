@@ -1,0 +1,314 @@
+{
+  "Telerik.Sitefinity.DynamicTypes.Model.Products.Product": [
+    {
+      "Title": "CrWn Sculpt Rib Tank",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-tank-001",
+      "UrlName": "crwn-w-tank-001",
+      "Price": 34.0,
+      "Description": "Ribbed tank with a flattering, sculpted fit—clean enough to layer, strong enough to stand alone.",
+      "MetaTitle": "CrWn Sculpt Rib Tank for Women | CrWn Clothing",
+      "MetaDescription": "Women's ribbed tank with a sculpted fit for effortless layering and everyday style.",
+      "OpenGraphTitle": "CrWn Sculpt Rib Tank",
+      "OpenGraphDescription": "A ribbed essential with a sleek, confident fit.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "X Small", "UrlName": "x-small", "Sku": "x-small", "Description": "Women's extra small" },
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black" },
+            { "Title": "Bone", "UrlName": "bone", "Sku": "bone", "Description": "Warm neutral bone" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn Cropped Hoodie",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-hood-002",
+      "UrlName": "crwn-w-hood-002",
+      "Price": 84.0,
+      "Description": "Cropped hoodie with a soft hand feel and a modern silhouette—street-ready without trying.",
+      "MetaTitle": "CrWn Cropped Hoodie for Women | CrWn Clothing",
+      "MetaDescription": "Women's cropped hoodie with premium comfort and modern streetwear styling.",
+      "OpenGraphTitle": "CrWn Cropped Hoodie",
+      "OpenGraphDescription": "Cropped, cozy, and built for the rotation.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" },
+            { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Women's large" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Charcoal", "UrlName": "charcoal", "Sku": "charcoal", "Description": "Deep charcoal grey" },
+            { "Title": "Rose Dust", "UrlName": "rose-dust", "Sku": "rose-dust", "Description": "Muted rose tone" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn Cleanline Crew Tee",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-tee-003",
+      "UrlName": "crwn-w-tee-003",
+      "Price": 36.0,
+      "Description": "Soft crew tee with a slightly tailored cut—easy, clean, and endlessly wearable.",
+      "MetaTitle": "CrWn Cleanline Crew Tee for Women | CrWn Clothing",
+      "MetaDescription": "Women's premium crew neck tee with a clean fit and ultra-soft feel.",
+      "OpenGraphTitle": "CrWn Cleanline Crew Tee",
+      "OpenGraphDescription": "The everyday tee—clean cut, premium feel.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "X Small", "UrlName": "x-small", "Sku": "x-small", "Description": "Women's extra small" },
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "White", "UrlName": "white", "Sku": "white", "Description": "Clean white" },
+            { "Title": "Ink", "UrlName": "ink", "Sku": "ink", "Description": "Deep inky navy" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn Wrap Long Sleeve",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-ls-004",
+      "UrlName": "crwn-w-ls-004",
+      "Price": 58.0,
+      "Description": "Lightweight long sleeve with a wrap-inspired neckline—polished, comfortable, and versatile.",
+      "MetaTitle": "CrWn Wrap Long Sleeve for Women | CrWn Clothing",
+      "MetaDescription": "Women's long sleeve top with a modern wrap neckline and comfortable fit.",
+      "OpenGraphTitle": "CrWn Wrap Long Sleeve",
+      "OpenGraphDescription": "Soft structure with an elevated neckline.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" },
+            { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Women's large" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Slate", "UrlName": "slate", "Sku": "slate", "Description": "Cool slate grey" },
+            { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn Flow Jogger",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-jogger-005",
+      "UrlName": "crwn-w-jogger-005",
+      "Price": 74.0,
+      "Description": "Relaxed jogger with a tapered leg and soft drape—made for movement and everyday wear.",
+      "MetaTitle": "CrWn Flow Jogger for Women | CrWn Clothing",
+      "MetaDescription": "Women's jogger pants with a tapered fit and premium comfort for daily wear.",
+      "OpenGraphTitle": "CrWn Flow Jogger",
+      "OpenGraphDescription": "Soft drape, clean taper—built for the rotation.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" },
+            { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Women's large" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Heather Grey", "UrlName": "heather-grey", "Sku": "heather-grey", "Description": "Soft heather grey" },
+            { "Title": "Midnight Navy", "UrlName": "midnight-navy", "Sku": "midnight-navy", "Description": "Deep navy tone" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn High-Waist Legging",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-legging-006",
+      "UrlName": "crwn-w-legging-006",
+      "Price": 68.0,
+      "Description": "High-waist legging with supportive stretch and a smooth finish—built for all-day comfort.",
+      "MetaTitle": "CrWn High-Waist Leggings for Women | CrWn Clothing",
+      "MetaDescription": "Women's high-waist leggings with supportive stretch and a smooth, premium feel.",
+      "OpenGraphTitle": "CrWn High-Waist Legging",
+      "OpenGraphDescription": "Supportive stretch that stays comfortable all day.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "X Small", "UrlName": "x-small", "Sku": "x-small", "Description": "Women's extra small" },
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black" },
+            { "Title": "Graphite", "UrlName": "graphite", "Sku": "graphite", "Description": "Dark graphite grey" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn Layering Overshirt",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-overshirt-007",
+      "UrlName": "crwn-w-overshirt-007",
+      "Price": 98.0,
+      "Description": "Structured overshirt designed for easy layering with a clean utility vibe.",
+      "MetaTitle": "CrWn Layering Overshirt for Women | CrWn Clothing",
+      "MetaDescription": "Women's overshirt built for layering with a clean, modern utility look.",
+      "OpenGraphTitle": "CrWn Layering Overshirt",
+      "OpenGraphDescription": "The layer that makes the whole outfit work.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" },
+            { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Women's large" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Sand", "UrlName": "sand", "Sku": "sand", "Description": "Warm neutral sand" },
+            { "Title": "Olive", "UrlName": "olive", "Sku": "olive", "Description": "Muted olive tone" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn Quilted Jacket",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-jacket-008",
+      "UrlName": "crwn-w-jacket-008",
+      "Price": 162.0,
+      "Description": "Midweight quilted jacket with a clean silhouette—warm enough to layer, light enough to move.",
+      "MetaTitle": "CrWn Quilted Jacket for Women | CrWn Clothing",
+      "MetaDescription": "Women's quilted jacket with midweight warmth and a clean, modern fit.",
+      "OpenGraphTitle": "CrWn Quilted Jacket",
+      "OpenGraphDescription": "Minimal lines. Maximum layering potential.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" },
+            { "Title": "Large", "UrlName": "large", "Sku": "large", "Description": "Women's large" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Stone", "UrlName": "stone", "Sku": "stone", "Description": "Light stone grey" },
+            { "Title": "Onyx", "UrlName": "onyx", "Sku": "onyx", "Description": "Deep black finish" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn Pleated Wide-Leg Pant",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-pant-009",
+      "UrlName": "crwn-w-pant-009",
+      "Price": 104.0,
+      "Description": "Pleated wide-leg pant with a clean drape—polished enough for work, relaxed enough for weekends.",
+      "MetaTitle": "CrWn Pleated Wide-Leg Pants for Women | CrWn Clothing",
+      "MetaDescription": "Women's wide-leg pants with pleats and a modern drape for versatile styling.",
+      "OpenGraphTitle": "CrWn Pleated Wide-Leg Pant",
+      "OpenGraphDescription": "Clean drape, confident fit—easy to dress up or down.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Waist",
+          "UrlName": "waist",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "26", "UrlName": "26", "Sku": "26", "Description": "26 inch waist" },
+            { "Title": "28", "UrlName": "28", "Sku": "28", "Description": "28 inch waist" },
+            { "Title": "30", "UrlName": "30", "Sku": "30", "Description": "30 inch waist" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black" },
+            { "Title": "Taupe", "UrlName": "taupe", "Sku": "taupe", "Description": "Soft taupe neutral" }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "CrWn Ribbed Midi Dress",
+      "ParentId": "84f8f7ed-e95f-4df8-92e0-4e0e093c30ee",
+      "Sku": "crwn-w-dress-010",
+      "UrlName": "crwn-w-dress-010",
+      "Price": 112.0,
+      "Description": "Ribbed midi dress with a streamlined fit—minimal, flattering, and ready for day-to-night.",
+      "MetaTitle": "CrWn Ribbed Midi Dress for Women | CrWn Clothing",
+      "MetaDescription": "Women's ribbed midi dress with a sleek fit and modern minimalist style.",
+      "OpenGraphTitle": "CrWn Ribbed Midi Dress",
+      "OpenGraphDescription": "Minimal lines, flattering fit—effortless day-to-night.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "X Small", "UrlName": "x-small", "Sku": "x-small", "Description": "Women's extra small" },
+            { "Title": "Small", "UrlName": "small", "Sku": "small", "Description": "Women's small" },
+            { "Title": "Medium", "UrlName": "medium", "Sku": "medium", "Description": "Women's medium" }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            { "Title": "Black", "UrlName": "black", "Sku": "black", "Description": "Classic black" },
+            { "Title": "Cocoa", "UrlName": "cocoa", "Sku": "cocoa", "Description": "Warm cocoa brown" }
+          ]
+        }
+      ]
+    }
+  ]
+}
