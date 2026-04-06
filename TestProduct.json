@@ -1,0 +1,59 @@
+{
+  "Telerik.Sitefinity.DynamicTypes.Model.Products.Product": [
+    {
+      "Title": "CrWn Core Crew Tee",
+      "ParentId": "e287eec4-b790-438b-925a-b867146dbfba",
+      "Sku": "CRWN-M-TEE-001",
+      "Price": 38.0,
+      "Description": "Premium cotton crew neck tee with a clean, modern fit.",
+      "MetaTitle": "CrWn Core Crew Tee for Men | CrWn Clothing",
+      "MetaDescription": "Premium men's crew neck t-shirt designed for everyday wear.",
+      "OpenGraphTitle": "CrWn Core Crew Tee",
+      "OpenGraphDescription": "A modern essential built for comfort and style.",
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.VariantGroup": [
+        {
+          "Title": "Size",
+          "UrlName": "size",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Small",
+              "UrlName": "small",
+              "Sku": "small",
+              "Description": "Men's small"
+            },
+            {
+              "Title": "Medium",
+              "UrlName": "medium",
+              "Sku": "medium",
+              "Description": "Men's medium"
+            },
+            {
+              "Title": "Large",
+              "UrlName": "large",
+              "Sku": "large",
+              "Description": "Men's large"
+            }
+          ]
+        },
+        {
+          "Title": "Color",
+          "UrlName": "color",
+          "Child_Telerik.Sitefinity.DynamicTypes.Model.Products.Variant": [
+            {
+              "Title": "Black",
+              "UrlName": "black",
+              "Sku": "black",
+              "Description": "Solid black"
+            },
+            {
+              "Title": "White",
+              "UrlName": "white",
+              "Sku": "white",
+              "Description": "Clean white"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
