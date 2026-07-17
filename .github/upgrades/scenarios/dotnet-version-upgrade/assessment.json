@@ -1,0 +1,1830 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-07-17T02:40:29.1798295Z",
+  "analysisEndTime": "2026-07-17T02:40:30.7481581Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 6,
+      "issues": 4,
+      "incidents": 60,
+      "effort": 60
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 5,
+        "Optional": 1,
+        "Potential": 54,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 7,
+        "Project": 5,
+        "Api": 48
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "ImportJson\\ImportJson.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 3,
+      "properties": {
+        "appName": "ImportJson",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 978,
+        "linesOfCode": 978,
+        "totalApiScanned": 900,
+        "minLinesOfCodeToChange": 2,
+        "maxLinesOfCodeToChange": 2
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "95ac6cd8-abd4-4d5e-a89a-2b267c8e73fc",
+          "ruleId": "Project.0002",
+          "projectPath": "ImportJson\\ImportJson.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "ImportJson\\ImportJson.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "38f7b5cc-2e57-435d-83a1-10f64b671dba",
+          "ruleId": "Api.0003",
+          "description": "Nullable JsonDocument properties deserialize to JsonValueKind.Null ",
+          "projectPath": "ImportJson\\ImportJson.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "using var document = JsonDocument.Parse(jsonValue.ToJsonString());",
+              "protected": "T:System.Text.Json.JsonDocument"
+            },
+            "kind": "File",
+            "path": "ImportJson\\Program.cs",
+            "snippet": "using var document = JsonDocument.Parse(jsonValue.ToJsonString());",
+            "protectedSnippet": "T:System.Text.Json.JsonDocument",
+            "label": "T:System.Text.Json.JsonDocument",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/serialization/9.0/jsondocument-props.md",
+                "isCustom": false
+              }
+            ],
+            "line": 943,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "9f755b94-ee39-4fbf-9701-b2a6efbf9fbf",
+          "ruleId": "Api.0003",
+          "description": "Nullable JsonDocument properties deserialize to JsonValueKind.Null ",
+          "projectPath": "ImportJson\\ImportJson.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "using var document = JsonDocument.Parse(jsonValue.ToJsonString());",
+              "protected": "T:System.Text.Json.JsonDocument"
+            },
+            "kind": "File",
+            "path": "ImportJson\\Program.cs",
+            "snippet": "using var document = JsonDocument.Parse(jsonValue.ToJsonString());",
+            "protectedSnippet": "T:System.Text.Json.JsonDocument",
+            "label": "T:System.Text.Json.JsonDocument",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/serialization/9.0/jsondocument-props.md",
+                "isCustom": false
+              }
+            ],
+            "line": 943,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "SitefinityContentUpdate.PageScaffolding\\SitefinityContentUpdate.PageScaffolding.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "SitefinityContentUpdate.PageScaffolding",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 216,
+        "linesOfCode": 216,
+        "totalApiScanned": 0,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 6,
+      "properties": {
+        "appName": "SitefinityContentUpdater.Core",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 10,
+        "numberOfCodeFiles": 10,
+        "linesTotal": 1577,
+        "linesOfCode": 1577,
+        "totalApiScanned": 1725,
+        "minLinesOfCodeToChange": 3,
+        "maxLinesOfCodeToChange": 3
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "fa3d1874-92dd-4915-9fd4-c3501fced70b",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+              "protected": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+            "snippet": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+            "protectedSnippet": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+            "label": "Microsoft.Extensions.Configuration 9.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration",
+              "PackageVersion": "9.0.0",
+              "PackageNewVersion": "10.0.10",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "8f69e625-0f49-48aa-9d9a-b667bc464aa3",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+              "protected": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+            "snippet": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+            "protectedSnippet": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+            "label": "Microsoft.Extensions.Configuration.Json 9.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration.Json",
+              "PackageVersion": "9.0.0",
+              "PackageNewVersion": "10.0.10",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "16085074-bf29-4068-bd97-54f68afae49c",
+          "ruleId": "Project.0002",
+          "projectPath": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "8c03e0b9-84fd-4040-8e4d-094d2bba8d22",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "client.BaseAddress = new Uri(config.Url);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core\\RestClient\\RestClientFactory.cs",
+            "snippet": "client.BaseAddress = new Uri(config.Url);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 24,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "81f40d58-5d3b-4f44-adce-1f6cc516a9ee",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "client.BaseAddress = new Uri(config.Url);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core\\RestClient\\RestClientFactory.cs",
+            "snippet": "client.BaseAddress = new Uri(config.Url);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 24,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "0d6b24f1-d245-4208-996f-7a84e530ba89",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core\\SitefinityContentUpdater.Core.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "client.BaseAddress = new Uri(config.Url);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core\\RestClient\\RestClientFactory.cs",
+            "snippet": "client.BaseAddress = new Uri(config.Url);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 24,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 47,
+      "properties": {
+        "appName": "SitefinityContentUpdater.Core.Tests",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 19,
+        "numberOfCodeFiles": 15,
+        "linesTotal": 7294,
+        "linesOfCode": 3616,
+        "totalApiScanned": 6401,
+        "minLinesOfCodeToChange": 43,
+        "maxLinesOfCodeToChange": 43
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "f21095f2-1207-46b3-b5cf-90c37aa0785f",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+              "protected": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+            "snippet": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+            "protectedSnippet": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+            "label": "Microsoft.Extensions.Configuration 9.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration",
+              "PackageVersion": "9.0.0",
+              "PackageNewVersion": "10.0.10",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "95611ecb-295c-48b4-bd24-d6994565c56b",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+              "protected": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+            "snippet": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+            "protectedSnippet": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+            "label": "Microsoft.Extensions.Configuration.Json 9.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration.Json",
+              "PackageVersion": "9.0.0",
+              "PackageNewVersion": "10.0.10",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "5d476799-f34f-432e-b39b-7613012a4b82",
+          "ruleId": "NuGet.0005",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "xunit, 2.9.2\n\nRecommendation:\n\nThis package will only be updated for security issues. All future feature work has moved onto v3.\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+              "protected": "xunit, 2.9.2\n\nRecommendation:\n\nThis package will only be updated for security issues. All future feature work has moved onto v3.\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+            "snippet": "xunit, 2.9.2\n\nRecommendation:\n\nThis package will only be updated for security issues. All future feature work has moved onto v3.\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+            "protectedSnippet": "xunit, 2.9.2\n\nRecommendation:\n\nThis package will only be updated for security issues. All future feature work has moved onto v3.\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+            "label": "xunit 2.9.2",
+            "properties": {
+              "PackageId": "xunit",
+              "PackageVersion": "2.9.2",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "b10745d0-6afd-4faf-b46a-3a31a47035d9",
+          "ruleId": "Project.0002",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "c5501bea-574d-4e56-94f9-6f0a46e54221",
+          "ruleId": "Api.0003",
+          "description": "Breaking change - Streaming HTTP responses enabled by default in browser HTTP clients ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "handler.LastRequest?.Content?.Headers.ContentType?.MediaType\r\n                .Should().Be(\u0022application/json\u0022);",
+              "protected": "T:System.Net.Http.HttpContent"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "handler.LastRequest?.Content?.Headers.ContentType?.MediaType\r\n                .Should().Be(\u0022application/json\u0022);",
+            "protectedSnippet": "T:System.Net.Http.HttpContent",
+            "label": "T:System.Net.Http.HttpContent",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/default-http-streaming.md",
+                "isCustom": false
+              }
+            ],
+            "line": 288,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "0633b8f9-a3cf-4875-8253-04c79e2bf658",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 277,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "9c690f58-70ec-4884-8019-d74ed523cac1",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 277,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "81d44343-fa3b-4034-b0fe-89bbb6b2717d",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 277,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "7a7b929c-6929-48cb-b61b-43c2b6a64bba",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 259,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "6ac3bbab-5ce1-4a92-b7d9-7ac2298d8edb",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 259,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "129caa0f-0cce-4ebf-973a-2a039b5faa9d",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 259,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "de6605e7-6ba1-4641-9d58-2b807fea631a",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var requestUri = handler.LastRequest?.RequestUri?.ToString();",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var requestUri = handler.LastRequest?.RequestUri?.ToString();",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 250,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "acdbcc5e-5c5c-4bae-b6d5-e52be2634142",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 239,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "2aad8643-f4ea-43bb-8751-5698d862d025",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 239,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "37cdebe2-54fd-4700-a1ca-85313ed70b99",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 239,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "373abebb-f3d7-4b0c-83ac-a268db331850",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient     = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient     = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 219,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "43131b6a-3ce3-4579-b665-7e50d848c306",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient     = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient     = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 219,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "d54d50f9-42dd-420b-8c14-e9ee04540854",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient     = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient     = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 219,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "56b24d46-1e32-43ad-85e8-d0c7801fa38f",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 196,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "60e5e5a8-ea7e-45c1-98a9-398568145e75",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 196,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "4da38c1b-6d56-41b8-8736-8bd4b2fd200a",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 196,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "e9b2ece0-4921-4b35-99be-3a87cc434784",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 175,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "deef9381-bac8-4f3c-ad75-b1da111803e4",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 175,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "1ae4a7e7-b150-487d-989a-27c830b6d801",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 175,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "44725fb7-8f23-4721-b441-a250873a9147",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 157,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "b28ed46b-0165-45a5-b6c6-881e573eabd5",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 157,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "47cb97ae-c161-402a-ba99-691d4cbae28d",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 157,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "d57edf25-9c1e-434a-8b43-1df347029003",
+          "ruleId": "Api.0003",
+          "description": "Breaking change - Streaming HTTP responses enabled by default in browser HTTP clients ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "handler.LastRequest?.Content?.Headers.ContentType?.MediaType\r\n                .Should().Be(\u0022application/json\u0022);",
+              "protected": "T:System.Net.Http.HttpContent"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "handler.LastRequest?.Content?.Headers.ContentType?.MediaType\r\n                .Should().Be(\u0022application/json\u0022);",
+            "protectedSnippet": "T:System.Net.Http.HttpContent",
+            "label": "T:System.Net.Http.HttpContent",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/default-http-streaming.md",
+                "isCustom": false
+              }
+            ],
+            "line": 140,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "e0cdaec3-272e-4c9b-a1f8-4b5d0625565c",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 134,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "bda3f695-4be2-4662-942f-b9943ec69a2a",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 134,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "79c389a6-95b5-48a3-9bad-e634dc5bc794",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 134,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "c7aa4ef0-8112-4ee2-9b18-0d057dab8681",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var requestUri = handler.LastRequest?.RequestUri?.ToString();",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var requestUri = handler.LastRequest?.RequestUri?.ToString();",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 125,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "105b41b5-67f3-48b5-8ae2-be2e61262391",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 118,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "96aa9000-06cd-4ae1-9473-beb3688c9e3c",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 118,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "7c96aa7d-64c9-41ec-ac0d-7fdf17ad51a1",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 118,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "d07baff1-6834-44e2-80c9-4efb9387fefb",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 97,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "f2d374ad-9160-4319-9368-fbe7211934e2",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 97,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "7c383c13-c745-4081-a0c0-e980a98947be",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 97,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "f0d08f29-0906-414a-b636-b93a5a332a4e",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 77,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "9fe4304d-e6e6-4be3-951f-ad4195879641",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 77,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "32c1f989-0f95-4638-8178-0212133206d3",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 77,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "1d09fa3b-b185-46b8-8785-54cd4b2c7502",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 59,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "9f8f74ce-eada-4322-a4ce-299a802747bf",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 59,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "7931f874-fbb8-4492-a40e-6384c5f6e5f0",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "var httpClient = new HttpClient(handler) { BaseAddress = new Uri(\u0022http://localhost/sf/system/\u0022) };",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 59,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "43787218-7cbe-4849-997b-4931d8cc2e3d",
+          "ruleId": "Api.0003",
+          "description": "Breaking change - Streaming HTTP responses enabled by default in browser HTTP clients ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new HttpResponseMessage(_statusCode)\r\n            {\r\n                Content = new StringContent(_responseBody, Encoding.UTF8, \u0022application/json\u0022)\r\n            };",
+              "protected": "T:System.Net.Http.HttpContent"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "return new HttpResponseMessage(_statusCode)\r\n            {\r\n                Content = new StringContent(_responseBody, Encoding.UTF8, \u0022application/json\u0022)\r\n            };",
+            "protectedSnippet": "T:System.Net.Http.HttpContent",
+            "label": "T:System.Net.Http.HttpContent",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/default-http-streaming.md",
+                "isCustom": false
+              }
+            ],
+            "line": 40,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "a9b91b85-65db-4834-9929-9d5d5e2b1bda",
+          "ruleId": "Api.0003",
+          "description": "Breaking change - Streaming HTTP responses enabled by default in browser HTTP clients ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "_lastRequestBody = await request.Content.ReadAsStringAsync(cancellationToken);",
+              "protected": "T:System.Net.Http.HttpContent"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "_lastRequestBody = await request.Content.ReadAsStringAsync(cancellationToken);",
+            "protectedSnippet": "T:System.Net.Http.HttpContent",
+            "label": "T:System.Net.Http.HttpContent",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/default-http-streaming.md",
+                "isCustom": false
+              }
+            ],
+            "line": 37,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "7320307f-7926-4900-b640-77e78c80648e",
+          "ruleId": "Api.0003",
+          "description": "Breaking change - Streaming HTTP responses enabled by default in browser HTTP clients ",
+          "projectPath": "SitefinityUpdater.Core.Tests\\SitefinityContentUpdater.Core.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "if (request.Content != null)\r\n            {\r\n                _lastRequestBody = await request.Content.ReadAsStringAsync(cancellationToken);\r\n            }",
+              "protected": "T:System.Net.Http.HttpContent"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater.Core.Tests\\Extensions\\RestClientExtensionsTests.cs",
+            "snippet": "if (request.Content != null)\r\n            {\r\n                _lastRequestBody = await request.Content.ReadAsStringAsync(cancellationToken);\r\n            }",
+            "protectedSnippet": "T:System.Net.Http.HttpContent",
+            "label": "T:System.Net.Http.HttpContent",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/default-http-streaming.md",
+                "isCustom": false
+              }
+            ],
+            "line": 35,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "SitefinityUpdater\\SitefinityContentUpdater.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 3,
+      "properties": {
+        "appName": "SitefinityContentUpdater",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 97,
+        "linesOfCode": 97,
+        "totalApiScanned": 44,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "ec16b0b6-4076-4188-9d7f-60cf7c7c0fb2",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SitefinityUpdater\\SitefinityContentUpdater.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+              "protected": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater\\SitefinityContentUpdater.csproj",
+            "snippet": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+            "protectedSnippet": "Microsoft.Extensions.Configuration, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration, and replace with new package Microsoft.Extensions.Configuration 10.0.10",
+            "label": "Microsoft.Extensions.Configuration 9.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration",
+              "PackageVersion": "9.0.0",
+              "PackageNewVersion": "10.0.10",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "0cd3f633-ceb9-4259-9f1a-c9771ab77e03",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SitefinityUpdater\\SitefinityContentUpdater.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+              "protected": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater\\SitefinityContentUpdater.csproj",
+            "snippet": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+            "protectedSnippet": "Microsoft.Extensions.Configuration.Json, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.10",
+            "label": "Microsoft.Extensions.Configuration.Json 9.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration.Json",
+              "PackageVersion": "9.0.0",
+              "PackageNewVersion": "10.0.10",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "fd643fae-9cda-4eab-80e1-5846dc2477de",
+          "ruleId": "Project.0002",
+          "projectPath": "SitefinityUpdater\\SitefinityContentUpdater.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "SitefinityUpdater\\SitefinityContentUpdater.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "SitefinityContentUpdater.Relationships\\SitefinityContentUpdater.Relationships.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "SitefinityContentUpdater.Relationships",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 138,
+        "linesOfCode": 138,
+        "totalApiScanned": 98,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "fb3268f9-95c2-4c12-b43b-c8ff40fdce87",
+          "ruleId": "Project.0002",
+          "projectPath": "SitefinityContentUpdater.Relationships\\SitefinityContentUpdater.Relationships.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "SitefinityContentUpdater.Relationships\\SitefinityContentUpdater.Relationships.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0003": {
+      "id": "Api.0003",
+      "isFeature": false,
+      "description": "API has a behavioral change in selected .NET version: code and binaries may behave differently at runtime without needing recompilation, but the new behavior might be undesirable and require updates.",
+      "label": "Behavioral change in selected .NET version",
+      "severity": "Potential",
+      "effort": 1
+    },
+    "NuGet.0005": {
+      "id": "NuGet.0005",
+      "isFeature": false,
+      "description": "NuGet package is deprecated.\n\nGo to its documentation and if there is a guidance for replacement of functionality provided by this package.",
+      "label": "NuGet package is deprecated",
+      "severity": "Optional",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262531",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}
