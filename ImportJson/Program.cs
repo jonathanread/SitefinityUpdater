@@ -2,6 +2,7 @@
 using System.Text.Json.Nodes;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Dto;
+using Progress.Sitefinity.RestSdk.Filters;
 using Progress.Sitefinity.RestSdk.Management;
 using SitefinityContentUpdater.Core.Helpers;
 using SitefinityContentUpdater.Core.RestClient;
@@ -582,7 +583,7 @@ internal class Program
             var typeName = childCollection.ContentType.Split('.').Last();
             ConsoleHelper.WriteInfo($"[{collectionIndex + 1}/{childCollections.Count}] Processing {childCollection.Items.Count} {typeName} item(s)...");
 
-            var createdChildren = new List<(SdkItem Item, List<ChildCollectionPlan> GrandChildren, List<RelatedCollectionPlan> GrandRelated)>();
+            var createdChildren = new List<(SdkItem Item, List<ChildCollectionPlan> GrandChildren, List<RelatedCollectionPlan> GrandRelated, bool IsNew)>();
 
             // First pass: Create all children as draft
             foreach (var childPlan in childCollection.Items)
@@ -635,7 +636,7 @@ internal class Program
                         }
                     }
 
-                    createdChildren.Add((createdChild, childPlan.ChildCollections, childPlan.RelatedCollections));
+                    createdChildren.Add((createdChild, childPlan.ChildCollections, childPlan.RelatedCollections, IsNew: existingChild == null));
                 }
                 catch (Exception ex)
                 {
@@ -665,7 +666,7 @@ internal class Program
             // Second pass: Process grandchildren and grand-related for each child
             if (createdChildren.Any(c => c.GrandChildren.Count > 0 || c.GrandRelated.Count > 0))
             {
-                foreach (var (child, grandChildren, grandRelated) in createdChildren)
+                foreach (var (child, grandChildren, grandRelated, _) in createdChildren)
                 {
                     if (grandChildren.Count > 0)
                     {
@@ -679,12 +680,13 @@ internal class Program
                 }
             }
 
-            // Third pass: Publish all children if requested
-            if (publishItems && createdChildren.Count > 0)
+            // Third pass: Publish only newly created children
+            var newChildren = createdChildren.Where(c => c.IsNew).ToList();
+            if (publishItems && newChildren.Count > 0)
             {
-                ConsoleHelper.WriteInfo($"Publishing {createdChildren.Count} {typeName} item(s)...");
+                ConsoleHelper.WriteInfo($"Publishing {newChildren.Count} new {typeName} item(s)...");
 
-                foreach (var (child, _, _) in createdChildren)
+                foreach (var (child, _, _, _) in newChildren)
                 {
                     try
                     {
@@ -696,7 +698,7 @@ internal class Program
                     }
                 }
 
-                ConsoleHelper.WriteSuccess($"Published {createdChildren.Count} {typeName} item(s)");
+                ConsoleHelper.WriteSuccess($"Published {newChildren.Count} {typeName} item(s)");
             }
 
             // Brief delay between different child types
@@ -746,7 +748,7 @@ internal class Program
             var typeName = relatedCollection.ContentType.Split('.').Last();
             ConsoleHelper.WriteInfo($"[{collectionIndex + 1}/{relatedCollections.Count}] Creating {relatedCollection.Items.Count} '{typeName}' item(s) for relation '{relatedCollection.RelationFieldName}'...");
 
-            var createdRelated = new List<(SdkItem Item, List<ChildCollectionPlan> Children, List<RelatedCollectionPlan> NestedRelated)>();
+            var createdRelated = new List<(SdkItem Item, List<ChildCollectionPlan> Children, List<RelatedCollectionPlan> NestedRelated, bool IsNew)>();
 
             // Pass 1: create each related item as draft (no ParentId injected)
             foreach (var itemPlan in relatedCollection.Items)
@@ -788,7 +790,7 @@ internal class Program
                         ConsoleHelper.WriteSuccess($"Created related {typeName} item '{created.Id}'");
                     }
 
-                    createdRelated.Add((created, itemPlan.ChildCollections, itemPlan.RelatedCollections));
+                    createdRelated.Add((created, itemPlan.ChildCollections, itemPlan.RelatedCollections, IsNew: existingRelated == null));
                 }
                 catch (Exception ex)
                 {
@@ -800,7 +802,7 @@ internal class Program
 
             // Pass 2: wire each created item to the parent via the named relationship field
             ConsoleHelper.WriteInfo($"Relating {createdRelated.Count} '{typeName}' item(s) to '{parentId}' via '{relatedCollection.RelationFieldName}'...");
-            foreach (var (relatedItem, _, _) in createdRelated)
+            foreach (var (relatedItem, _, _, _) in createdRelated)
             {
                 try
                 {
@@ -822,7 +824,7 @@ internal class Program
             }
 
             // Pass 3: recurse into child/related collections on each newly created related item
-            foreach (var (relatedItem, children, nestedRelated) in createdRelated)
+            foreach (var (relatedItem, children, nestedRelated, _) in createdRelated)
             {
                 if (children.Count > 0)
                 {
@@ -835,11 +837,12 @@ internal class Program
                 }
             }
 
-            // Pass 4: publish if requested
-            if (publishItems && createdRelated.Count > 0)
+            // Pass 4: publish only newly created related items
+            var newRelated = createdRelated.Where(r => r.IsNew).ToList();
+            if (publishItems && newRelated.Count > 0)
             {
-                ConsoleHelper.WriteInfo($"Publishing {createdRelated.Count} '{typeName}' related item(s)...");
-                foreach (var (relatedItem, _, _) in createdRelated)
+                ConsoleHelper.WriteInfo($"Publishing {newRelated.Count} new '{typeName}' related item(s)...");
+                foreach (var (relatedItem, _, _, _) in newRelated)
                 {
                     try
                     {
@@ -850,7 +853,7 @@ internal class Program
                         ConsoleHelper.WriteWarning($"Failed to publish related {typeName} item '{relatedItem.Id}': {ex.Message}. Item created but remains in draft.");
                     }
                 }
-                ConsoleHelper.WriteSuccess($"Published {createdRelated.Count} '{typeName}' related item(s)");
+                ConsoleHelper.WriteSuccess($"Published {newRelated.Count} '{typeName}' related item(s)");
             }
 
             if (collectionIndex < relatedCollections.Count - 1)
@@ -935,7 +938,12 @@ internal class Program
                 Type = contentType,
                 Take = 1,
                 Fields = new[] { "Id", "Title", "UrlName" },
-                Filter = $"{matchField} = '{matchValue.Replace("'", "''")}'"
+                Filter = new FilterClause
+                {
+                    FieldName = matchField,
+                    FieldValue = matchValue,
+                    Operator = FilterClause.Operators.Equal
+                }
             });
 
             return response?.Items?.FirstOrDefault();
