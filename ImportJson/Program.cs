@@ -478,26 +478,38 @@ internal class Program
 
                     var sdkItem = BuildSdkItem(fields);
 
-                    // Create as draft first
-                    var created = await client.CreateItem<SdkItem>(BuildCreateArgs(typePlan.ContentType, sdkItem, false));
-
-                    if (created == null)
+                    // Check for an existing item before creating a duplicate
+                    var existing = await FindExistingItemAsync(client, typePlan.ContentType, fields);
+                    SdkItem created;
+                    if (existing != null)
                     {
-                        throw new InvalidOperationException($"CreateItem returned null for type '{typePlan.ContentType}'.");
+                        ConsoleHelper.WriteWarning($"Skipping creation of {typeName} — item already exists with ID: {existing.Id}");
+                        created = existing;
                     }
-
-                    if (string.IsNullOrWhiteSpace(created.Id))
+                    else
                     {
-                        throw new InvalidOperationException($"Created item returned empty ID for type '{typePlan.ContentType}'.");
-                    }
+                        // Create as draft first
+                        created = await client.CreateItem<SdkItem>(BuildCreateArgs(typePlan.ContentType, sdkItem, false));
 
-                    ConsoleHelper.WriteSuccess($"Created {typeName} item with ID: {created.Id}");
+                        if (created == null)
+                        {
+                            throw new InvalidOperationException($"CreateItem returned null for type '{typePlan.ContentType}'.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(created.Id))
+                        {
+                            throw new InvalidOperationException($"Created item returned empty ID for type '{typePlan.ContentType}'.");
+                        }
+
+                        ConsoleHelper.WriteSuccess($"Created {typeName} item with ID: {created.Id}");
+                    }
 
                     createdParents.Add(new CreatedParentItem(
                         typePlan.ContentType,
                         created.Id,
                         itemPlan.ChildCollections,
-                        itemPlan.RelatedCollections));
+                        itemPlan.RelatedCollections,
+                        IsNew: existing == null));
 
                     processed++;
                     if (testMode && processed >= 1)
@@ -514,13 +526,14 @@ internal class Program
             }
         }
 
-        // Publish all top-level items after creation if requested
-        if (publishItems && createdParents.Count > 0)
+        // Publish newly created top-level items (skip pre-existing ones)
+        var newParents = createdParents.Where(p => p.IsNew).ToList();
+        if (publishItems && newParents.Count > 0)
         {
-            ConsoleHelper.WriteInfo($"Publishing {createdParents.Count} top-level item(s)...");
-            
+            ConsoleHelper.WriteInfo($"Publishing {newParents.Count} top-level item(s)...");
+
             var publishCount = 0;
-            foreach (var parent in createdParents)
+            foreach (var parent in newParents)
             {
                 try
                 {
@@ -532,8 +545,8 @@ internal class Program
                     ConsoleHelper.WriteWarning($"Failed to publish item '{parent.Id}': {ex.Message}. Item created but remains in draft.");
                 }
             }
-            
-            ConsoleHelper.WriteSuccess($"Published {publishCount} of {createdParents.Count} top-level item(s)");
+
+            ConsoleHelper.WriteSuccess($"Published {publishCount} of {newParents.Count} top-level item(s)");
         }
 
         return createdParents;
@@ -598,17 +611,28 @@ internal class Program
 
                     var childItem = BuildSdkItem(childPayload);
 
-                    // Always create as draft first
-                    var createdChild = await client.CreateItem<SdkItem>(BuildCreateArgs(childCollection.ContentType, childItem, false));
-
-                    if (createdChild == null)
+                    // Dedup: check whether this child already exists before creating
+                    var existingChild = await FindExistingItemAsync(client, childCollection.ContentType, childPayload);
+                    SdkItem createdChild;
+                    if (existingChild != null)
                     {
-                        throw new InvalidOperationException($"CreateItem returned null for child type '{childCollection.ContentType}'.");
+                        ConsoleHelper.WriteWarning($"Skipping creation of {typeName} child — item already exists with ID: {existingChild.Id}");
+                        createdChild = existingChild;
                     }
-
-                    if (string.IsNullOrWhiteSpace(createdChild.Id))
+                    else
                     {
-                        throw new InvalidOperationException($"Created child item returned empty ID for type '{childCollection.ContentType}'.");
+                        // Always create as draft first
+                        createdChild = await client.CreateItem<SdkItem>(BuildCreateArgs(childCollection.ContentType, childItem, false));
+
+                        if (createdChild == null)
+                        {
+                            throw new InvalidOperationException($"CreateItem returned null for child type '{childCollection.ContentType}'.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(createdChild.Id))
+                        {
+                            throw new InvalidOperationException($"Created child item returned empty ID for type '{childCollection.ContentType}'.");
+                        }
                     }
 
                     createdChildren.Add((createdChild, childPlan.ChildCollections, childPlan.RelatedCollections));
@@ -738,19 +762,32 @@ internal class Program
                     }
 
                     var sdkItem = BuildSdkItem(fields);
-                    var created = await client.CreateItem<SdkItem>(BuildCreateArgs(relatedCollection.ContentType, sdkItem, false));
 
-                    if (created == null)
+                    // Dedup: check whether this related item already exists before creating
+                    var existingRelated = await FindExistingItemAsync(client, relatedCollection.ContentType, fields);
+                    SdkItem created;
+                    if (existingRelated != null)
                     {
-                        throw new InvalidOperationException($"CreateItem returned null for related type '{relatedCollection.ContentType}'.");
+                        ConsoleHelper.WriteWarning($"Skipping creation of {typeName} related item — already exists with ID: {existingRelated.Id}");
+                        created = existingRelated;
+                    }
+                    else
+                    {
+                        created = await client.CreateItem<SdkItem>(BuildCreateArgs(relatedCollection.ContentType, sdkItem, false));
+
+                        if (created == null)
+                        {
+                            throw new InvalidOperationException($"CreateItem returned null for related type '{relatedCollection.ContentType}'.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(created.Id))
+                        {
+                            throw new InvalidOperationException($"Created related item returned empty ID for type '{relatedCollection.ContentType}'.");
+                        }
+
+                        ConsoleHelper.WriteSuccess($"Created related {typeName} item '{created.Id}'");
                     }
 
-                    if (string.IsNullOrWhiteSpace(created.Id))
-                    {
-                        throw new InvalidOperationException($"Created related item returned empty ID for type '{relatedCollection.ContentType}'.");
-                    }
-
-                    ConsoleHelper.WriteSuccess($"Created related {typeName} item '{created.Id}'");
                     createdRelated.Add((created, itemPlan.ChildCollections, itemPlan.RelatedCollections));
                 }
                 catch (Exception ex)
@@ -868,6 +905,48 @@ internal class Program
         }
     }
 
+    // Queries Sitefinity for an existing item with the same Title (or UrlName as fallback).
+    // Returns the first matching SdkItem, or null when no duplicate is found.
+    private static async Task<SdkItem?> FindExistingItemAsync(IRestClient client, string contentType, JsonObject fields)
+    {
+        string? matchValue = null;
+        string? matchField = null;
+
+        if (fields.TryGetPropertyValue("Title", out var titleNode) && titleNode != null)
+        {
+            matchValue = titleNode.GetValue<string>()?.Trim();
+            matchField = "Title";
+        }
+        else if (fields.TryGetPropertyValue("UrlName", out var urlNode) && urlNode != null)
+        {
+            matchValue = urlNode.GetValue<string>()?.Trim();
+            matchField = "UrlName";
+        }
+
+        if (string.IsNullOrWhiteSpace(matchValue) || matchField == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            var response = await client.GetItems<SdkItem>(new GetAllArgs
+            {
+                Type = contentType,
+                Take = 1,
+                Fields = new[] { "Id", "Title", "UrlName" },
+                Filter = $"{matchField} = \"{matchValue}\""
+            });
+
+            return response?.Items?.FirstOrDefault();
+        }
+        catch (Exception ex)
+        {
+            ConsoleHelper.WriteWarning($"Could not check for existing '{contentType}' by {matchField}='{matchValue}': {ex.Message}. Proceeding with creation.");
+            return null;
+        }
+    }
+
     private static CreateArgs BuildCreateArgs(string contentType, SdkItem data, bool publishItems)
     {
         return new CreateArgs
@@ -974,5 +1053,6 @@ internal class Program
     private sealed record RelatedCollectionPlan(string RelationFieldName, string ContentType, List<ImportItemPlan> Items);
     // FieldName = SdkItem field to set (text after "Taxon_" prefix); TaxonomyName = taxonomy to query/create within
     private sealed record TaxonFieldPlan(string FieldName, string TaxonomyName, List<string> TaxonTitles);
-    private sealed record CreatedParentItem(string ContentType, string Id, List<ChildCollectionPlan> ChildCollections, List<RelatedCollectionPlan> RelatedCollections);
+    // IsNew = false when the item already existed in Sitefinity (dedup); used to skip re-publishing
+    private sealed record CreatedParentItem(string ContentType, string Id, List<ChildCollectionPlan> ChildCollections, List<RelatedCollectionPlan> RelatedCollections, bool IsNew = true);
 }
