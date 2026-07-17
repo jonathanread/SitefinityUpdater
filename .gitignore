@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Sensitive appsettings — copy appsettings.sample.json and fill in real values locally
+**/appsettings.json
+
 # User-specific files
 *.rsuser
 *.suo
