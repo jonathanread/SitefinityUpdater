@@ -14,9 +14,13 @@
   - Value must be an object with `ContentType` (string) and `Items` (array or single object).
   - Related items do **not** receive `ParentId`; they are linked through named relationship fields.
   - Related items can themselves carry `Child_` and `Related_` entries — nesting is fully recursive.
+- Taxonomy fields using `Taxon_<FieldName>` — resolves taxon titles to GUIDs within a named taxonomy, creating missing taxa on demand. The resolved GUIDs are set on the item field before creation.
+  - Value must be an object with `TaxonomyName` (string) and `Taxa` (array of title strings, or a single string).
+  - Taxon resolution is cached per taxonomy for the entire import run — each unique title is only created once.
+  - Supported on top-level items, child items, and related items.
 - Import order:
-  1. Parse the full structure and detect all child and related relationships.
-  2. Create all top-level items first.
+  1. Parse the full structure and detect all child, related, and taxonomy relationships.
+  2. Create all top-level items first (taxa resolved inline before each create).
   3. Recursively create child items, injecting `ParentId` from the created ancestor's ID.
   4. Create related items, then call `RelateItem` to link them to their parent.
   5. Recurse into child/related collections on each newly created related item.
@@ -338,6 +342,119 @@ Related items can carry their own `Related_` entries. The importer recurses as d
 
 ---
 
+## Taxon_ samples
+
+The `Taxon_<FieldName>` prefix resolves (or creates) taxon titles inside a named Sitefinity taxonomy and sets the resulting GUIDs on the item field before it is created.
+
+The value must be an object with two required properties:
+
+| Property | Description |
+|---|---|
+| `TaxonomyName` | The Sitefinity taxonomy name to resolve taxa within (e.g. `"Tags"`, `"Categories"`) |
+| `Taxa` | Array of taxon title strings to resolve, or a single string |
+
+---
+
+### 10 — Single taxonomy field
+
+Assign one or more tags to an item. Existing taxa are resolved by title; missing ones are created automatically.
+
+```json
+{
+  "Telerik.Sitefinity.DynamicTypes.Model.Articles.Article": [
+    {
+      "Title": "Article One",
+      "UrlName": "article-one",
+      "Taxon_Tags": {
+        "TaxonomyName": "Tags",
+        "Taxa": ["Technology", "Design", "Open Source"]
+      }
+    }
+  ]
+}
+```
+
+---
+
+### 11 — Multiple taxonomy fields on the same item
+
+An item can carry any number of independent `Taxon_` fields, each targeting a different taxonomy and Sitefinity field.
+
+```json
+{
+  "Telerik.Sitefinity.DynamicTypes.Model.Articles.Article": [
+    {
+      "Title": "Article Two",
+      "UrlName": "article-two",
+      "Taxon_Tags": {
+        "TaxonomyName": "Tags",
+        "Taxa": ["Technology", "Design"]
+      },
+      "Taxon_Category": {
+        "TaxonomyName": "Categories",
+        "Taxa": ["News"]
+      }
+    }
+  ]
+}
+```
+
+---
+
+### 12 — Single taxon shorthand
+
+When only one taxon is needed, `Taxa` can be a plain string instead of an array.
+
+```json
+{
+  "Telerik.Sitefinity.DynamicTypes.Model.Articles.Article": [
+    {
+      "Title": "Article Three",
+      "UrlName": "article-three",
+      "Taxon_Tags": {
+        "TaxonomyName": "Tags",
+        "Taxa": "Technology"
+      }
+    }
+  ]
+}
+```
+
+---
+
+### 13 — Taxonomy fields on child items
+
+`Taxon_` fields work anywhere `Child_` and `Related_` entries are supported. Taxa are resolved before each item is created at any nesting depth.
+
+```json
+{
+  "Telerik.Sitefinity.DynamicTypes.Model.Store.Product": [
+    {
+      "Title": "Product A",
+      "UrlName": "product-a",
+      "Taxon_Tags": {
+        "TaxonomyName": "Tags",
+        "Taxa": ["Sale", "New Arrival"]
+      },
+      "Child_Telerik.Sitefinity.DynamicTypes.Model.Store.Variant": [
+        {
+          "Title": "Variant S",
+          "UrlName": "variant-s",
+          "Taxon_Tags": {
+            "TaxonomyName": "Tags",
+            "Taxa": ["Sale"]
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+> The taxon `"Sale"` is only created **once** regardless of how many items reference it. The `TaxonomyProcessor` caches all resolved and created taxa for the duration of the import run.
+
+---
+
 ## Configuration
 
 Use `ImportJson/appsettings.json`:
@@ -371,4 +488,9 @@ If no argument is passed, the app uses `JsonFilePath` from config. If that is al
 - `Related_<FieldName>` links items through Sitefinity's relationship API rather than `ParentId`.
 - Related items are standalone — they are created independently and then associated via the named field.
 - Both `Child_` and `Related_` nesting can go arbitrarily deep; each level is fully resolved before the next is processed.
+- `Taxon_<FieldName>` resolves taxon titles to GUIDs before item creation. Missing taxa are created automatically.
+- Taxa are resolved from the named taxonomy via `TaxonomyName`; the field is set as a `Guid[]` on the item.
+- Taxon resolution is cached per taxonomy for the full import run — the same title is never created twice.
+- `Child_`, `Related_`, and `Taxon_` can all coexist on the same item and at any nesting depth.
+- Test mode can process only one top-level item before a full run.
 - Test mode can process only one top-level item before a full run.

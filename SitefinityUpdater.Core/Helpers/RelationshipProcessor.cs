@@ -1,5 +1,7 @@
+using Newtonsoft.Json.Linq;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Dto;
+using System.Text.Json;
 
 namespace SitefinityContentUpdater.Core.Helpers
 {
@@ -167,42 +169,86 @@ namespace SitefinityContentUpdater.Core.Helpers
 
             try
             {
-                // Try to get the field value as a collection of related items
                 var fieldValue = sourceItem.GetValue<object>(fieldName);
 
                 if (fieldValue == null)
+                    return relatedIds;
+
+                // SdkItem uses Newtonsoft.Json internally (JObject backing store).
+                // Handle JArray, JValue (string GUID), and JObject (related item with Id).
+                if (fieldValue is JArray jArray)
                 {
+                    foreach (var token in jArray)
+                    {
+                        var id = ExtractIdFromJToken(token);
+                        if (!string.IsNullOrEmpty(id))
+                            relatedIds.Add(id!);
+                    }
                     return relatedIds;
                 }
 
-                // Handle different possible formats of related items
+                if (fieldValue is JValue jValue)
+                {
+                    var str = jValue.Value?.ToString();
+                    if (Guid.TryParse(str, out _))
+                        relatedIds.Add(str!);
+                    return relatedIds;
+                }
+
+                if (fieldValue is JObject jObject)
+                {
+                    var id = ExtractIdFromJToken(jObject);
+                    if (!string.IsNullOrEmpty(id))
+                        relatedIds.Add(id!);
+                    return relatedIds;
+                }
+
+                // Fallback: System.Text.Json.JsonElement (alternative serializer path)
+                if (fieldValue is System.Text.Json.JsonElement jsonElement)
+                {
+                    if (jsonElement.ValueKind == System.Text.Json.JsonValueKind.Array)
+                    {
+                        foreach (var el in jsonElement.EnumerateArray())
+                        {
+                            var id = ExtractIdFromJsonElement(el);
+                            if (!string.IsNullOrEmpty(id))
+                                relatedIds.Add(id!);
+                        }
+                    }
+                    else if (jsonElement.ValueKind == System.Text.Json.JsonValueKind.String)
+                    {
+                        var str = jsonElement.GetString();
+                        if (Guid.TryParse(str, out _))
+                            relatedIds.Add(str!);
+                    }
+                    else if (jsonElement.ValueKind == System.Text.Json.JsonValueKind.Object)
+                    {
+                        var id = ExtractIdFromJsonElement(jsonElement);
+                        if (!string.IsNullOrEmpty(id))
+                            relatedIds.Add(id!);
+                    }
+                    return relatedIds;
+                }
+
+                // Plain in-memory fallback (IEnumerable, string, object)
                 if (fieldValue is IEnumerable<object> collection)
                 {
                     foreach (var item in collection)
                     {
                         var id = ExtractIdFromRelatedItem(item);
                         if (!string.IsNullOrEmpty(id))
-                        {
-                            relatedIds.Add(id);
-                        }
+                            relatedIds.Add(id!);
                     }
                 }
-                else if (fieldValue is string stringValue && !string.IsNullOrEmpty(stringValue))
+                else if (fieldValue is string stringValue && Guid.TryParse(stringValue, out _))
                 {
-                    // Single ID as string
-                    if (Guid.TryParse(stringValue, out _))
-                    {
-                        relatedIds.Add(stringValue);
-                    }
+                    relatedIds.Add(stringValue);
                 }
                 else
                 {
-                    // Try to extract ID from single object
                     var id = ExtractIdFromRelatedItem(fieldValue);
                     if (!string.IsNullOrEmpty(id))
-                    {
-                        relatedIds.Add(id);
-                    }
+                        relatedIds.Add(id!);
                 }
             }
             catch (Exception ex)
@@ -211,6 +257,45 @@ namespace SitefinityContentUpdater.Core.Helpers
             }
 
             return relatedIds;
+        }
+
+        private static string? ExtractIdFromJToken(JToken token)
+        {
+            if (token is JValue jVal)
+            {
+                var str = jVal.Value?.ToString();
+                return Guid.TryParse(str, out _) ? str : null;
+            }
+
+            if (token is JObject jObj && jObj.TryGetValue("Id", StringComparison.OrdinalIgnoreCase, out var idToken))
+                return idToken.ToString();
+
+            // If token is a bare string GUID
+            if (token.Type == JTokenType.String)
+            {
+                var str = token.Value<string>();
+                return Guid.TryParse(str, out _) ? str : null;
+            }
+
+            return null;
+        }
+
+        private static string? ExtractIdFromJsonElement(JsonElement element)
+        {
+            if (element.ValueKind == JsonValueKind.String)
+            {
+                var str = element.GetString();
+                return Guid.TryParse(str, out _) ? str : null;
+            }
+
+            if (element.ValueKind == JsonValueKind.Object &&
+                element.TryGetProperty("Id", out var idProp))
+            {
+                var idStr = idProp.ValueKind == JsonValueKind.String ? idProp.GetString() : idProp.ToString();
+                return !string.IsNullOrEmpty(idStr) ? idStr : null;
+            }
+
+            return null;
         }
 
         private string? ExtractIdFromRelatedItem(object item)
