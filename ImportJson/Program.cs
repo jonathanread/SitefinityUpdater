@@ -458,11 +458,11 @@ internal class Program
     private static async Task<List<CreatedParentItem>> CreateTopLevelItemsAsync(IRestClient client, ImportPlan importPlan, bool testMode, bool publishItems, TaxonomyProcessor taxonomyProcessor)
     {
         var createdParents = new List<CreatedParentItem>();
-        var processed = 0;
 
         foreach (var typePlan in importPlan.TopLevelTypes)
         {
             var typeName = typePlan.ContentType.Split('.').Last();
+            var processedForType = 0;
 
             foreach (var itemPlan in typePlan.Items)
             {
@@ -511,10 +511,10 @@ internal class Program
                         itemPlan.RelatedCollections,
                         IsNew: existing == null));
 
-                    processed++;
-                    if (testMode && processed >= 1)
+                    processedForType++;
+                    if (testMode && processedForType >= 1)
                     {
-                        return createdParents;
+                        break;
                     }
                 }
                 catch (Exception ex)
@@ -935,7 +935,7 @@ internal class Program
                 Type = contentType,
                 Take = 1,
                 Fields = new[] { "Id", "Title", "UrlName" },
-                Filter = $"{matchField} = \"{matchValue}\""
+                Filter = $"{matchField} = '{matchValue.Replace("'", "''")}'"
             });
 
             return response?.Items?.FirstOrDefault();
