@@ -7,7 +7,7 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
     /// <summary>
     /// Integration tests for CSV file handling and image mapping functionality.
     /// </summary>
-    public class CsvMappingIntegrationTests
+    public class CsvMappingIntegrationTests : IDisposable
     {
         private readonly string _testCsvDirectory;
 
@@ -124,7 +124,7 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
             var foundMapping = mappings.FirstOrDefault(m => m.SourceId == sourceId);
 
             foundMapping.Should().NotBeNull();
-            foundMapping.TargetId.Should().Be(targetId);
+            foundMapping!.TargetId.Should().Be(targetId);
             foundMapping.ImageTitle.Should().Be("Target Image");
         }
 

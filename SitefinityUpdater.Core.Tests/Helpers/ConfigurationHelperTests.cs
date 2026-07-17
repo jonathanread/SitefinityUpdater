@@ -23,7 +23,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             var sw = new StringWriter();
             try
             {
-                var inMemorySettings = new Dictionary<string, string>
+                var inMemorySettings = new Dictionary<string, string?>
                 {
                     {"Sitefinity:Url", "http://localhost:8080/api/default/"},
                     {"Sitefinity:AccessKey", "test-access-key"},
@@ -59,7 +59,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             var sr = new StringReader("http://test.com/api/default/\ntest-key\n" + Guid.NewGuid().ToString() + "\n");
             try
             {
-                var inMemorySettings = new Dictionary<string, string>();
+                var inMemorySettings = new Dictionary<string, string?>();
 
                 IConfiguration configuration = new ConfigurationBuilder()
                     .AddInMemoryCollection(inMemorySettings)
@@ -98,7 +98,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
 
                 Func<Task> act = async () => await ConfigurationHelper.GetSitefinityConfigAsync(
                     new ConfigurationBuilder()
-                        .AddInMemoryCollection(new Dictionary<string, string>())
+                        .AddInMemoryCollection(new Dictionary<string, string?>())
                         .Build());
 
                 await act.Should().ThrowAsync<InvalidOperationException>()
@@ -121,7 +121,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             try
             {
                 var siteId = Guid.NewGuid();
-                var inMemorySettings = new Dictionary<string, string>
+                var inMemorySettings = new Dictionary<string, string?>
                 {
                     {"SourceSite:Url", "http://source-site.com/api/default/"},
                     {"SourceSite:AccessKey", "source-access-key"},
@@ -156,7 +156,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             try
             {
                 var siteId = Guid.NewGuid();
-                var inMemorySettings = new Dictionary<string, string>
+                var inMemorySettings = new Dictionary<string, string?>
                 {
                     {"TargetSite:Url", "http://target-site.com/api/default/"},
                     {"TargetSite:AccessKey", "target-access-key"},
@@ -198,7 +198,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
 
                 Func<Task> act = async () => await ConfigurationHelper.GetSourceSitefinityConfigAsync(
                     new ConfigurationBuilder()
-                        .AddInMemoryCollection(new Dictionary<string, string>())
+                        .AddInMemoryCollection(new Dictionary<string, string?>())
                         .Build());
 
                 await act.Should().ThrowAsync<InvalidOperationException>()
@@ -228,7 +228,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
 
                 Func<Task> act = async () => await ConfigurationHelper.GetTargetSitefinityConfigAsync(
                     new ConfigurationBuilder()
-                        .AddInMemoryCollection(new Dictionary<string, string>())
+                        .AddInMemoryCollection(new Dictionary<string, string?>())
                         .Build());
 
                 await act.Should().ThrowAsync<InvalidOperationException>()
@@ -250,7 +250,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             var sw = new StringWriter();
             try
             {
-                var inMemorySettings = new Dictionary<string, string>();
+                var inMemorySettings = new Dictionary<string, string?>();
 
                 IConfiguration configuration = new ConfigurationBuilder()
                     .AddInMemoryCollection(inMemorySettings)
@@ -277,7 +277,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             var sw = new StringWriter();
             try
             {
-                var inMemorySettings = new Dictionary<string, string>
+                var inMemorySettings = new Dictionary<string, string?>
                 {
                     {"CsvFilePath", "custom_mappings.csv"}
                 };
@@ -307,7 +307,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             var sw = new StringWriter();
             try
             {
-                var inMemorySettings = new Dictionary<string, string>
+                var inMemorySettings = new Dictionary<string, string?>
                 {
                     {"CsvFilePath", "test.csv"}
                 };

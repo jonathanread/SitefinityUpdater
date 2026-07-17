@@ -47,7 +47,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         [Fact]
         public void ContentProcessor_ShouldThrowArgumentNullException_WhenClientIsNull()
         {
-            Action act = () => new ContentProcessor(null, _testCsvPath);
+            Action act = () => new ContentProcessor(null!, _testCsvPath);
 
             act.Should().Throw<ArgumentNullException>()
                 .WithParameterName("client");
@@ -58,7 +58,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
         {
             var mockClient = new Mock<IRestClient>();
 
-            Action act = () => new ContentProcessor(mockClient.Object, null);
+            Action act = () => new ContentProcessor(mockClient.Object, null!);
 
             act.Should().Throw<ArgumentNullException>()
                 .WithParameterName("csvFilePath");
@@ -80,7 +80,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             var mockClient = new Mock<IRestClient>();
             var processor = new ContentProcessor(mockClient.Object, _testCsvPath);
 
-            Func<Task> act = async () => await processor.UpdateContentAsync(null, "FieldName");
+            Func<Task> act = async () => await processor.UpdateContentAsync(null!, "FieldName");
 
             await act.Should().ThrowAsync<ArgumentNullException>()
                 .WithParameterName("contentType");
@@ -92,7 +92,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             var mockClient = new Mock<IRestClient>();
             var processor = new ContentProcessor(mockClient.Object, _testCsvPath);
 
-            Func<Task> act = async () => await processor.UpdateContentAsync("ContentType", null);
+            Func<Task> act = async () => await processor.UpdateContentAsync("ContentType", null!);
 
             await act.Should().ThrowAsync<ArgumentNullException>()
                 .WithParameterName("fieldName");
@@ -562,7 +562,7 @@ namespace SitefinityContentUpdater.Core.Tests.Helpers
             var foundMapping = mappings.FirstOrDefault(m => m.SourceId == sourceId);
 
             foundMapping.Should().NotBeNull();
-            foundMapping.TargetId.Should().Be(targetId);
+            foundMapping!.TargetId.Should().Be(targetId);
             foundMapping.ImageTitle.Should().Be("Target Image");
         }
     }

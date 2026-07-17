@@ -43,7 +43,7 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
             var sw = new StringWriter();
             try
             {
-                var inMemorySettings = new Dictionary<string, string>
+                var inMemorySettings = new Dictionary<string, string?>
                 {
                     {"Sitefinity:Url", "http://localhost:8080/api/default/"},
                     {"Sitefinity:AccessKey", "test-key"},
@@ -87,12 +87,12 @@ namespace SitefinityContentUpdater.Core.Tests.Integration
             var sw = new StringWriter();
             try
             {
-                var config1 = new Dictionary<string, string>
+                var config1 = new Dictionary<string, string?>
                 {
                     {"CsvFilePath", "file1.csv"}
                 };
 
-                var config2 = new Dictionary<string, string>
+                var config2 = new Dictionary<string, string?>
                 {
                     {"CsvFilePath", "file2.csv"}
                 };

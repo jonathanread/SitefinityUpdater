@@ -121,7 +121,7 @@ namespace SitefinityContentUpdater.Core.Helpers
                 if (imgsFromDOM != null && imgsFromDOM.Length > 0)
                 {
                     var imgDetails = imgsFromDOM
-                        .Select(i => new ImgDetail { Title = i.Title ?? i.AlternativeText, Id = GetGuidFromSrc(i.GetAttribute("src")) })
+                        .Select(i => new ImgDetail { Title = i.Title ?? i.AlternativeText, Id = GetGuidFromSrc(i.GetAttribute("src") ?? string.Empty) })
                         .ToList();
 
                     if (imgDetails.Any())
@@ -136,10 +136,10 @@ namespace SitefinityContentUpdater.Core.Helpers
                         {
                             var src = img.GetAttribute("src");
                             var imgTitle = img.Title ?? img.AlternativeText;
-                            var imgId = GetGuidFromSrc(src);
-                            
-                            ImageDto sfImg = null;
-                            
+                            var imgId = GetGuidFromSrc(src ?? string.Empty);
+
+                            ImageDto? sfImg = null;
+
                             if (imgId.HasValue && mappings.Any())
                             {
                                 var mapping = mappings.FirstOrDefault(m => m.SourceId == imgId.Value);
@@ -152,7 +152,7 @@ namespace SitefinityContentUpdater.Core.Helpers
                                     }
                                 }
                             }
-                            
+
                             if (sfImg == null)
                             {
                                 sfImg = images.Count == 1 ? images[0] : images.FirstOrDefault(i => 
@@ -352,20 +352,20 @@ namespace SitefinityContentUpdater.Core.Helpers
 
     public class ImgDetail
     {
-        public string Title { get; set; }
+        public string? Title { get; set; }
         public Guid? Id { get; set; }
     }
 
     public class ImageMapping
     {
         [Name("Image Title")]
-        public string ImageTitle { get; set; }
-        
+        public string? ImageTitle { get; set; }
+
         [Name("Source Id")]
         public Guid SourceId { get; set; }
-        
+
         [Name("Target Id")]
-        public string TargetIdString { get; set; }
+        public string? TargetIdString { get; set; }
         
         [Ignore]
         public Guid? TargetId

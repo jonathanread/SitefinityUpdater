@@ -8,7 +8,7 @@ namespace SitefinityContentUpdater.Core.Tests.RestClient
         [Fact]
         public async Task GetRestClient_ShouldThrowArgumentNullException_WhenConfigIsNull()
         {
-            Func<Task> act = async () => await RestClientFactory.GetRestClient(null);
+            Func<Task> act = async () => await RestClientFactory.GetRestClient(null!);
 
             await act.Should().ThrowAsync<ArgumentNullException>()
                 .WithParameterName("config");
