@@ -9,6 +9,7 @@ using SitefinityContentUpdater.Core.RestClient;
 internal class Program
 {
     private const string ChildPrefix = "Child_";
+    private const string RelatedPrefix = "Related_";
     private const string ParentIdFieldName = "ParentId";
 
     private static async Task Main(string[] args)
@@ -45,6 +46,7 @@ internal class Program
             ConsoleHelper.WriteInfo($"Top-level content types found: {importPlan.TopLevelTypes.Count}");
             ConsoleHelper.WriteInfo($"Top-level items found: {importPlan.TopLevelTypes.Sum(t => t.Items.Count)}");
             ConsoleHelper.WriteInfo($"Contains child items: {(importPlan.HasChildren ? "Yes" : "No")}");
+            ConsoleHelper.WriteInfo($"Contains related items: {(importPlan.HasRelated ? "Yes" : "No")}");
 
             var keepAsDraft = ConsoleHelper.Confirm("Do you prefer items to remain as draft? (y/n)");
             var publishItems = !keepAsDraft;
@@ -77,6 +79,11 @@ internal class Program
             if (importPlan.HasChildren)
             {
                 await CreateChildItemsAsync(client, createdParents, publishItems);
+            }
+
+            if (importPlan.HasRelated)
+            {
+                await CreateRelatedItemsAsync(client, createdParents, publishItems);
             }
 
             Console.WriteLine();
@@ -162,6 +169,7 @@ internal class Program
 
         var topLevelTypes = new List<TopLevelTypePlan>();
         var hasChildren = false;
+        var hasRelated = false;
 
         foreach (var property in root)
         {
@@ -192,6 +200,11 @@ internal class Program
                     hasChildren = true;
                 }
 
+                if (parsedItem.RelatedCollections.Count > 0)
+                {
+                    hasRelated = true;
+                }
+
                 items.Add(parsedItem);
             }
 
@@ -201,13 +214,14 @@ internal class Program
             }
         }
 
-        return new ImportPlan(topLevelTypes, hasChildren);
+        return new ImportPlan(topLevelTypes, hasChildren, hasRelated);
     }
 
     private static ImportItemPlan ParseImportItem(JsonObject jsonObject)
     {
         var fields = new JsonObject();
         var childCollections = new List<ChildCollectionPlan>();
+        var relatedCollections = new List<RelatedCollectionPlan>();
 
         foreach (var field in jsonObject)
         {
@@ -220,7 +234,7 @@ internal class Program
                     continue;
                 }
 
-                var childItems = ParseChildItems(field.Value);
+                var childItems = ParseNestedItems(field.Value);
 
                 if (childItems.Count > 0)
                 {
@@ -230,24 +244,84 @@ internal class Program
                 continue;
             }
 
+            if (field.Key.StartsWith(RelatedPrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                var relationFieldName = field.Key[RelatedPrefix.Length..].Trim();
+                if (string.IsNullOrWhiteSpace(relationFieldName))
+                {
+                    ConsoleHelper.WriteWarning($"Skipping related field '{field.Key}' because it does not contain a relation field name.");
+                    continue;
+                }
+
+                var plan = ParseRelatedCollection(relationFieldName, field.Value);
+                if (plan != null)
+                {
+                    relatedCollections.Add(plan);
+                }
+
+                continue;
+            }
+
             fields[field.Key] = field.Value?.DeepClone();
         }
 
-        return new ImportItemPlan(fields, childCollections);
+        return new ImportItemPlan(fields, childCollections, relatedCollections);
     }
 
-    private static List<ImportItemPlan> ParseChildItems(JsonNode? childNode)
+    // Parses a Related_ value which must be an object with "ContentType" and "Items" (or a single object / array shorthand).
+    // Supported formats:
+    //   { "ContentType": "...", "Items": [ {...}, {...} ] }
+    //   { "ContentType": "...", "Items": { ... } }      <- single item shorthand
+    private static RelatedCollectionPlan? ParseRelatedCollection(string relationFieldName, JsonNode? node)
+    {
+        if (node is not JsonObject wrapper)
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Related_{relationFieldName}' — value must be a JSON object with 'ContentType' and 'Items'.");
+            return null;
+        }
+
+        var contentTypeNode = wrapper["ContentType"];
+        if (contentTypeNode == null)
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Related_{relationFieldName}' — missing required 'ContentType' property.");
+            return null;
+        }
+
+        var contentType = contentTypeNode.GetValue<string>().Trim();
+        if (string.IsNullOrWhiteSpace(contentType))
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Related_{relationFieldName}' — 'ContentType' is empty.");
+            return null;
+        }
+
+        var itemsNode = wrapper["Items"];
+        if (itemsNode == null)
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Related_{relationFieldName}' — missing required 'Items' property.");
+            return null;
+        }
+
+        var items = ParseNestedItems(itemsNode);
+        if (items.Count == 0)
+        {
+            return null;
+        }
+
+        return new RelatedCollectionPlan(relationFieldName, contentType, items);
+    }
+
+    private static List<ImportItemPlan> ParseNestedItems(JsonNode? node)
     {
         var result = new List<ImportItemPlan>();
 
-        switch (childNode)
+        switch (node)
         {
-            case JsonObject childObject:
-                result.Add(ParseImportItem((JsonObject)childObject.DeepClone()));
+            case JsonObject obj:
+                result.Add(ParseImportItem((JsonObject)obj.DeepClone()));
                 break;
 
-            case JsonArray childArray:
-                foreach (var item in childArray)
+            case JsonArray array:
+                foreach (var item in array)
                 {
                     if (item is JsonObject itemObject)
                     {
@@ -293,7 +367,8 @@ internal class Program
                     createdParents.Add(new CreatedParentItem(
                         typePlan.ContentType,
                         created.Id,
-                        itemPlan.ChildCollections));
+                        itemPlan.ChildCollections,
+                        itemPlan.RelatedCollections));
 
                     processed++;
                     if (testMode && processed >= 1)
@@ -364,7 +439,7 @@ internal class Program
             var typeName = childCollection.ContentType.Split('.').Last();
             ConsoleHelper.WriteInfo($"[{collectionIndex + 1}/{childCollections.Count}] Processing {childCollection.Items.Count} {typeName} item(s)...");
 
-            var createdChildren = new List<(SdkItem Item, List<ChildCollectionPlan> GrandChildren)>();
+            var createdChildren = new List<(SdkItem Item, List<ChildCollectionPlan> GrandChildren, List<RelatedCollectionPlan> GrandRelated)>();
 
             // First pass: Create all children as draft
             foreach (var childPlan in childCollection.Items)
@@ -386,7 +461,7 @@ internal class Program
                     }
 
                     var childItem = BuildSdkItem(childPayload);
-                    
+
                     // Always create as draft first
                     var createdChild = await client.CreateItem<SdkItem>(BuildCreateArgs(childCollection.ContentType, childItem, false));
 
@@ -400,7 +475,7 @@ internal class Program
                         throw new InvalidOperationException($"Created child item returned empty ID for type '{childCollection.ContentType}'.");
                     }
 
-                    createdChildren.Add((createdChild, childPlan.ChildCollections));
+                    createdChildren.Add((createdChild, childPlan.ChildCollections, childPlan.RelatedCollections));
                 }
                 catch (Exception ex)
                 {
@@ -427,14 +502,19 @@ internal class Program
 
             ConsoleHelper.WriteSuccess($"Created {createdChildren.Count} {typeName} item(s)");
 
-            // Second pass: Process grandchildren for each child
-            if (createdChildren.Any(c => c.GrandChildren.Count > 0))
+            // Second pass: Process grandchildren and grand-related for each child
+            if (createdChildren.Any(c => c.GrandChildren.Count > 0 || c.GrandRelated.Count > 0))
             {
-                foreach (var (child, grandChildren) in createdChildren)
+                foreach (var (child, grandChildren, grandRelated) in createdChildren)
                 {
                     if (grandChildren.Count > 0)
                     {
                         await CreateChildItemsForParentAsync(client, child.Id, grandChildren, publishItems);
+                    }
+
+                    if (grandRelated.Count > 0)
+                    {
+                        await CreateRelatedItemsForParentAsync(client, childCollection.ContentType, child.Id, grandRelated, publishItems);
                     }
                 }
             }
@@ -443,8 +523,8 @@ internal class Program
             if (publishItems && createdChildren.Count > 0)
             {
                 ConsoleHelper.WriteInfo($"Publishing {createdChildren.Count} {typeName} item(s)...");
-                
-                foreach (var (child, _) in createdChildren)
+
+                foreach (var (child, _, _) in createdChildren)
                 {
                     try
                     {
@@ -455,7 +535,7 @@ internal class Program
                         ConsoleHelper.WriteWarning($"Failed to publish {typeName} item '{child.Id}': {ex.Message}. Item created but remains in draft.");
                     }
                 }
-                
+
                 ConsoleHelper.WriteSuccess($"Published {createdChildren.Count} {typeName} item(s)");
             }
 
@@ -467,6 +547,137 @@ internal class Program
         }
         
         ConsoleHelper.WriteSuccess($"Finished processing all {childCollections.Count} child collection type(s) for parent '{parentId}'");
+    }
+
+    private static async Task CreateRelatedItemsAsync(IRestClient client, List<CreatedParentItem> createdParents, bool publishItems)
+    {
+        foreach (var parent in createdParents)
+        {
+            if (parent.RelatedCollections.Count > 0)
+            {
+                await CreateRelatedItemsForParentAsync(client, parent.ContentType, parent.Id, parent.RelatedCollections, publishItems);
+            }
+        }
+    }
+
+    // Creates items for every RelatedCollectionPlan, then wires each created item to the parent
+    // via RelateItem using the named relationship field.  Recurses into child/related collections
+    // on each newly created item so nesting can go arbitrarily deep.
+    private static async Task CreateRelatedItemsForParentAsync(
+        IRestClient client,
+        string parentContentType,
+        string parentId,
+        List<RelatedCollectionPlan> relatedCollections,
+        bool publishItems)
+    {
+        ConsoleHelper.WriteInfo($"Creating {relatedCollections.Count} related collection(s) for '{parentContentType}' item '{parentId}'...");
+
+        for (int collectionIndex = 0; collectionIndex < relatedCollections.Count; collectionIndex++)
+        {
+            var relatedCollection = relatedCollections[collectionIndex];
+
+            if (string.IsNullOrWhiteSpace(relatedCollection.ContentType))
+            {
+                ConsoleHelper.WriteWarning($"Skipping related collection '{relatedCollection.RelationFieldName}' — ContentType is empty.");
+                continue;
+            }
+
+            var typeName = relatedCollection.ContentType.Split('.').Last();
+            ConsoleHelper.WriteInfo($"[{collectionIndex + 1}/{relatedCollections.Count}] Creating {relatedCollection.Items.Count} '{typeName}' item(s) for relation '{relatedCollection.RelationFieldName}'...");
+
+            var createdRelated = new List<(SdkItem Item, List<ChildCollectionPlan> Children, List<RelatedCollectionPlan> NestedRelated)>();
+
+            // Pass 1: create each related item as draft (no ParentId injected)
+            foreach (var itemPlan in relatedCollection.Items)
+            {
+                try
+                {
+                    var sdkItem = BuildSdkItem(itemPlan.Fields);
+                    var created = await client.CreateItem<SdkItem>(BuildCreateArgs(relatedCollection.ContentType, sdkItem, false));
+
+                    if (created == null)
+                    {
+                        throw new InvalidOperationException($"CreateItem returned null for related type '{relatedCollection.ContentType}'.");
+                    }
+
+                    if (string.IsNullOrWhiteSpace(created.Id))
+                    {
+                        throw new InvalidOperationException($"Created related item returned empty ID for type '{relatedCollection.ContentType}'.");
+                    }
+
+                    ConsoleHelper.WriteSuccess($"Created related {typeName} item '{created.Id}'");
+                    createdRelated.Add((created, itemPlan.ChildCollections, itemPlan.RelatedCollections));
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException(
+                        $"Failed creating related item for type '{relatedCollection.ContentType}' (parent '{parentId}'). Payload: {itemPlan.Fields.ToJsonString()}",
+                        ex);
+                }
+            }
+
+            // Pass 2: wire each created item to the parent via the named relationship field
+            ConsoleHelper.WriteInfo($"Relating {createdRelated.Count} '{typeName}' item(s) to '{parentId}' via '{relatedCollection.RelationFieldName}'...");
+            foreach (var (relatedItem, _, _) in createdRelated)
+            {
+                try
+                {
+                    await client.RelateItem(new RelateArgs
+                    {
+                        Type = parentContentType,
+                        Id = parentId,
+                        RelationName = relatedCollection.RelationFieldName,
+                        RelatedItemId = relatedItem.Id
+                    });
+
+                    ConsoleHelper.WriteSuccess($"Related '{typeName}' item '{relatedItem.Id}' to '{parentId}' via '{relatedCollection.RelationFieldName}'");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleHelper.WriteError($"Failed to relate '{typeName}' item '{relatedItem.Id}' to '{parentId}': {ex.Message}");
+                    throw;
+                }
+            }
+
+            // Pass 3: recurse into child/related collections on each newly created related item
+            foreach (var (relatedItem, children, nestedRelated) in createdRelated)
+            {
+                if (children.Count > 0)
+                {
+                    await CreateChildItemsForParentAsync(client, relatedItem.Id, children, publishItems);
+                }
+
+                if (nestedRelated.Count > 0)
+                {
+                    await CreateRelatedItemsForParentAsync(client, relatedCollection.ContentType, relatedItem.Id, nestedRelated, publishItems);
+                }
+            }
+
+            // Pass 4: publish if requested
+            if (publishItems && createdRelated.Count > 0)
+            {
+                ConsoleHelper.WriteInfo($"Publishing {createdRelated.Count} '{typeName}' related item(s)...");
+                foreach (var (relatedItem, _, _) in createdRelated)
+                {
+                    try
+                    {
+                        await PublishItemAsync(client, relatedCollection.ContentType, relatedItem);
+                    }
+                    catch (Exception ex)
+                    {
+                        ConsoleHelper.WriteWarning($"Failed to publish related {typeName} item '{relatedItem.Id}': {ex.Message}. Item created but remains in draft.");
+                    }
+                }
+                ConsoleHelper.WriteSuccess($"Published {createdRelated.Count} '{typeName}' related item(s)");
+            }
+
+            if (collectionIndex < relatedCollections.Count - 1)
+            {
+                await Task.Delay(200);
+            }
+        }
+
+        ConsoleHelper.WriteSuccess($"Finished processing all {relatedCollections.Count} related collection(s) for '{parentId}'");
     }
 
     private static CreateArgs BuildCreateArgs(string contentType, SdkItem data, bool publishItems)
@@ -567,9 +778,11 @@ internal class Program
         };
     }
 
-    private sealed record ImportPlan(List<TopLevelTypePlan> TopLevelTypes, bool HasChildren);
+    private sealed record ImportPlan(List<TopLevelTypePlan> TopLevelTypes, bool HasChildren, bool HasRelated);
     private sealed record TopLevelTypePlan(string ContentType, List<ImportItemPlan> Items);
-    private sealed record ImportItemPlan(JsonObject Fields, List<ChildCollectionPlan> ChildCollections);
-    private sealed record ChildCollectionPlan(String ContentType, List<ImportItemPlan> Items);
-    private sealed record CreatedParentItem(string ContentType, string Id, List<ChildCollectionPlan> ChildCollections);
+    private sealed record ImportItemPlan(JsonObject Fields, List<ChildCollectionPlan> ChildCollections, List<RelatedCollectionPlan> RelatedCollections);
+    private sealed record ChildCollectionPlan(string ContentType, List<ImportItemPlan> Items);
+    // RelationFieldName = the Sitefinity relationship field name (text after "Related_" prefix)
+    private sealed record RelatedCollectionPlan(string RelationFieldName, string ContentType, List<ImportItemPlan> Items);
+    private sealed record CreatedParentItem(string ContentType, string Id, List<ChildCollectionPlan> ChildCollections, List<RelatedCollectionPlan> RelatedCollections);
 }
