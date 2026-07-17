@@ -10,6 +10,7 @@ internal class Program
 {
     private const string ChildPrefix = "Child_";
     private const string RelatedPrefix = "Related_";
+    private const string TaxonPrefix = "Taxon_";
     private const string ParentIdFieldName = "ParentId";
 
     private static async Task Main(string[] args)
@@ -47,6 +48,7 @@ internal class Program
             ConsoleHelper.WriteInfo($"Top-level items found: {importPlan.TopLevelTypes.Sum(t => t.Items.Count)}");
             ConsoleHelper.WriteInfo($"Contains child items: {(importPlan.HasChildren ? "Yes" : "No")}");
             ConsoleHelper.WriteInfo($"Contains related items: {(importPlan.HasRelated ? "Yes" : "No")}");
+            ConsoleHelper.WriteInfo($"Contains taxonomy fields: {(importPlan.HasTaxa ? "Yes" : "No")}");
 
             var keepAsDraft = ConsoleHelper.Confirm("Do you prefer items to remain as draft? (y/n)");
             var publishItems = !keepAsDraft;
@@ -74,16 +76,24 @@ internal class Program
                 }
             }
 
-            var createdParents = await CreateTopLevelItemsAsync(client, importPlan, testMode, publishItems);
+            var taxonomyProcessor = new TaxonomyProcessor(client);
+
+            if (importPlan.HasTaxa)
+            {
+                var allTaxonomyNames = CollectTaxonomyNames(importPlan);
+                await taxonomyProcessor.PreWarmAsync(allTaxonomyNames);
+            }
+
+            var createdParents = await CreateTopLevelItemsAsync(client, importPlan, testMode, publishItems, taxonomyProcessor);
 
             if (importPlan.HasChildren)
             {
-                await CreateChildItemsAsync(client, createdParents, publishItems);
+                await CreateChildItemsAsync(client, createdParents, publishItems, taxonomyProcessor);
             }
 
             if (importPlan.HasRelated)
             {
-                await CreateRelatedItemsAsync(client, createdParents, publishItems);
+                await CreateRelatedItemsAsync(client, createdParents, publishItems, taxonomyProcessor);
             }
 
             Console.WriteLine();
@@ -103,6 +113,32 @@ internal class Program
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
         }
+    }
+
+    // Walks the entire import plan tree (top-level → children → related, recursively) and
+    // returns every distinct TaxonomyName referenced by any TaxonFieldPlan at any depth.
+    // Used to pre-warm the TaxonomyProcessor cache in a single upfront batch.
+    private static HashSet<string> CollectTaxonomyNames(ImportPlan plan)
+    {
+        var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var type in plan.TopLevelTypes)
+            foreach (var item in type.Items)
+                CollectTaxonomyNamesFromItem(item, names);
+        return names;
+    }
+
+    private static void CollectTaxonomyNamesFromItem(ImportItemPlan item, HashSet<string> names)
+    {
+        foreach (var taxonField in item.TaxonFields)
+            names.Add(taxonField.TaxonomyName);
+
+        foreach (var child in item.ChildCollections)
+            foreach (var childItem in child.Items)
+                CollectTaxonomyNamesFromItem(childItem, names);
+
+        foreach (var related in item.RelatedCollections)
+            foreach (var relatedItem in related.Items)
+                CollectTaxonomyNamesFromItem(relatedItem, names);
     }
 
     private static async Task<IRestClient?> ConnectToSiteAsync(SitefinityConfig config)
@@ -170,6 +206,7 @@ internal class Program
         var topLevelTypes = new List<TopLevelTypePlan>();
         var hasChildren = false;
         var hasRelated = false;
+        var hasTaxa = false;
 
         foreach (var property in root)
         {
@@ -205,6 +242,11 @@ internal class Program
                     hasRelated = true;
                 }
 
+                if (parsedItem.TaxonFields.Count > 0)
+                {
+                    hasTaxa = true;
+                }
+
                 items.Add(parsedItem);
             }
 
@@ -214,7 +256,7 @@ internal class Program
             }
         }
 
-        return new ImportPlan(topLevelTypes, hasChildren, hasRelated);
+        return new ImportPlan(topLevelTypes, hasChildren, hasRelated, hasTaxa);
     }
 
     private static ImportItemPlan ParseImportItem(JsonObject jsonObject)
@@ -222,6 +264,7 @@ internal class Program
         var fields = new JsonObject();
         var childCollections = new List<ChildCollectionPlan>();
         var relatedCollections = new List<RelatedCollectionPlan>();
+        var taxonFields = new List<TaxonFieldPlan>();
 
         foreach (var field in jsonObject)
         {
@@ -262,10 +305,88 @@ internal class Program
                 continue;
             }
 
+            if (field.Key.StartsWith(TaxonPrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                var fieldName = field.Key[TaxonPrefix.Length..].Trim();
+                if (string.IsNullOrWhiteSpace(fieldName))
+                {
+                    ConsoleHelper.WriteWarning($"Skipping taxon field '{field.Key}' because it does not contain a field name.");
+                    continue;
+                }
+
+                var taxonPlan = ParseTaxonField(fieldName, field.Value);
+                if (taxonPlan != null)
+                {
+                    taxonFields.Add(taxonPlan);
+                }
+
+                continue;
+            }
+
             fields[field.Key] = field.Value?.DeepClone();
         }
 
-        return new ImportItemPlan(fields, childCollections, relatedCollections);
+        return new ImportItemPlan(fields, childCollections, relatedCollections, taxonFields);
+    }
+
+    // Parses a Taxon_ value.
+    // Supported format: { "TaxonomyName": "Tags", "Taxa": ["Title A", "Title B"] }
+    // Single string shorthand: { "TaxonomyName": "Tags", "Taxa": "Title A" }
+    private static TaxonFieldPlan? ParseTaxonField(string fieldName, JsonNode? node)
+    {
+        if (node is not JsonObject wrapper)
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Taxon_{fieldName}' — value must be a JSON object with 'TaxonomyName' and 'Taxa'.");
+            return null;
+        }
+
+        var taxonomyNameNode = wrapper["TaxonomyName"];
+        if (taxonomyNameNode == null)
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Taxon_{fieldName}' — missing required 'TaxonomyName' property.");
+            return null;
+        }
+
+        var taxonomyName = taxonomyNameNode.GetValue<string>().Trim();
+        if (string.IsNullOrWhiteSpace(taxonomyName))
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Taxon_{fieldName}' — 'TaxonomyName' is empty.");
+            return null;
+        }
+
+        var taxaNode = wrapper["Taxa"];
+        if (taxaNode == null)
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Taxon_{fieldName}' — missing required 'Taxa' property.");
+            return null;
+        }
+
+        var titles = new List<string>();
+        switch (taxaNode)
+        {
+            case JsonArray taxaArray:
+                foreach (var item in taxaArray)
+                {
+                    var title = item?.GetValue<string>()?.Trim();
+                    if (!string.IsNullOrWhiteSpace(title))
+                        titles.Add(title);
+                }
+                break;
+
+            case JsonValue taxaValue:
+                var singleTitle = taxaValue.GetValue<string>()?.Trim();
+                if (!string.IsNullOrWhiteSpace(singleTitle))
+                    titles.Add(singleTitle);
+                break;
+        }
+
+        if (titles.Count == 0)
+        {
+            ConsoleHelper.WriteWarning($"Skipping 'Taxon_{fieldName}' — 'Taxa' contains no valid titles.");
+            return null;
+        }
+
+        return new TaxonFieldPlan(fieldName, taxonomyName, titles);
     }
 
     // Parses a Related_ value which must be an object with "ContentType" and "Items" (or a single object / array shorthand).
@@ -334,7 +455,7 @@ internal class Program
         return result;
     }
 
-    private static async Task<List<CreatedParentItem>> CreateTopLevelItemsAsync(IRestClient client, ImportPlan importPlan, bool testMode, bool publishItems)
+    private static async Task<List<CreatedParentItem>> CreateTopLevelItemsAsync(IRestClient client, ImportPlan importPlan, bool testMode, bool publishItems, TaxonomyProcessor taxonomyProcessor)
     {
         var createdParents = new List<CreatedParentItem>();
         var processed = 0;
@@ -342,13 +463,21 @@ internal class Program
         foreach (var typePlan in importPlan.TopLevelTypes)
         {
             var typeName = typePlan.ContentType.Split('.').Last();
-            
+
             foreach (var itemPlan in typePlan.Items)
             {
                 try
                 {
-                    var sdkItem = BuildSdkItem(itemPlan.Fields);
-                    
+                    var fields = (JsonObject)itemPlan.Fields.DeepClone();
+
+                    if (itemPlan.TaxonFields.Count > 0)
+                    {
+                        var resolvedTaxa = await ResolveTaxaAsync(itemPlan.TaxonFields, taxonomyProcessor);
+                        ApplyTaxaToFields(fields, resolvedTaxa);
+                    }
+
+                    var sdkItem = BuildSdkItem(fields);
+
                     // Create as draft first
                     var created = await client.CreateItem<SdkItem>(BuildCreateArgs(typePlan.ContentType, sdkItem, false));
 
@@ -410,11 +539,11 @@ internal class Program
         return createdParents;
     }
 
-    private static async Task CreateChildItemsAsync(IRestClient client, List<CreatedParentItem> createdParents, bool publishItems)
+    private static async Task CreateChildItemsAsync(IRestClient client, List<CreatedParentItem> createdParents, bool publishItems, TaxonomyProcessor taxonomyProcessor)
     {
         foreach (var parent in createdParents)
         {
-            await CreateChildItemsForParentAsync(client, parent.Id, parent.ChildCollections, publishItems);
+            await CreateChildItemsForParentAsync(client, parent.Id, parent.ChildCollections, publishItems, taxonomyProcessor);
         }
     }
 
@@ -422,14 +551,15 @@ internal class Program
         IRestClient client,
         string parentId,
         List<ChildCollectionPlan> childCollections,
-        bool publishItems)
+        bool publishItems,
+        TaxonomyProcessor taxonomyProcessor)
     {
         ConsoleHelper.WriteInfo($"Creating {childCollections.Count} child collection type(s) for parent '{parentId}'...");
-        
+
         for (int collectionIndex = 0; collectionIndex < childCollections.Count; collectionIndex++)
         {
             var childCollection = childCollections[collectionIndex];
-            
+
             if (string.IsNullOrWhiteSpace(childCollection.ContentType))
             {
                 ConsoleHelper.WriteWarning($"Skipping child creation for parent '{parentId}' because child content type is empty.");
@@ -449,6 +579,12 @@ internal class Program
                 try
                 {
                     childPayload = (JsonObject)childPlan.Fields.DeepClone();
+
+                    if (childPlan.TaxonFields.Count > 0)
+                    {
+                        var resolvedTaxa = await ResolveTaxaAsync(childPlan.TaxonFields, taxonomyProcessor);
+                        ApplyTaxaToFields(childPayload, resolvedTaxa);
+                    }
 
                     // Child items must use the ID returned by the just-created parent item.
                     if (Guid.TryParse(parentId, out var parentGuid))
@@ -481,9 +617,9 @@ internal class Program
                 {
                     var payloadForError = childPayload?.ToJsonString() ?? childPlan.Fields.ToJsonString();
                     var titleValue = childPayload?.ContainsKey("Title") == true ? childPayload["Title"]?.ToString() : "unknown";
-                    
+
                     var errorMessage = $"Failed creating child item '{titleValue}' for type '{childCollection.ContentType}' (ParentId: {parentId}). Payload: {payloadForError}";
-                    
+
                     // Extract the actual API error if available
                     var currentEx = ex;
                     var exceptionChain = new List<string>();
@@ -492,9 +628,9 @@ internal class Program
                         exceptionChain.Add($"{currentEx.GetType().Name}: {currentEx.Message}");
                         currentEx = currentEx.InnerException;
                     }
-                    
-                    errorMessage += "\nException chain:\n  " + string.Join("\n  → ", exceptionChain);
-                    
+
+                    errorMessage += "\nException chain:\n  " + string.Join("\n  \u2192 ", exceptionChain);
+
                     ConsoleHelper.WriteError(errorMessage);
                     throw new InvalidOperationException(errorMessage, ex);
                 }
@@ -509,12 +645,12 @@ internal class Program
                 {
                     if (grandChildren.Count > 0)
                     {
-                        await CreateChildItemsForParentAsync(client, child.Id, grandChildren, publishItems);
+                        await CreateChildItemsForParentAsync(client, child.Id, grandChildren, publishItems, taxonomyProcessor);
                     }
 
                     if (grandRelated.Count > 0)
                     {
-                        await CreateRelatedItemsForParentAsync(client, childCollection.ContentType, child.Id, grandRelated, publishItems);
+                        await CreateRelatedItemsForParentAsync(client, childCollection.ContentType, child.Id, grandRelated, publishItems, taxonomyProcessor);
                     }
                 }
             }
@@ -545,17 +681,17 @@ internal class Program
                 await Task.Delay(200);
             }
         }
-        
+
         ConsoleHelper.WriteSuccess($"Finished processing all {childCollections.Count} child collection type(s) for parent '{parentId}'");
     }
 
-    private static async Task CreateRelatedItemsAsync(IRestClient client, List<CreatedParentItem> createdParents, bool publishItems)
+    private static async Task CreateRelatedItemsAsync(IRestClient client, List<CreatedParentItem> createdParents, bool publishItems, TaxonomyProcessor taxonomyProcessor)
     {
         foreach (var parent in createdParents)
         {
             if (parent.RelatedCollections.Count > 0)
             {
-                await CreateRelatedItemsForParentAsync(client, parent.ContentType, parent.Id, parent.RelatedCollections, publishItems);
+                await CreateRelatedItemsForParentAsync(client, parent.ContentType, parent.Id, parent.RelatedCollections, publishItems, taxonomyProcessor);
             }
         }
     }
@@ -568,7 +704,8 @@ internal class Program
         string parentContentType,
         string parentId,
         List<RelatedCollectionPlan> relatedCollections,
-        bool publishItems)
+        bool publishItems,
+        TaxonomyProcessor taxonomyProcessor)
     {
         ConsoleHelper.WriteInfo($"Creating {relatedCollections.Count} related collection(s) for '{parentContentType}' item '{parentId}'...");
 
@@ -592,7 +729,15 @@ internal class Program
             {
                 try
                 {
-                    var sdkItem = BuildSdkItem(itemPlan.Fields);
+                    var fields = (JsonObject)itemPlan.Fields.DeepClone();
+
+                    if (itemPlan.TaxonFields.Count > 0)
+                    {
+                        var resolvedTaxa = await ResolveTaxaAsync(itemPlan.TaxonFields, taxonomyProcessor);
+                        ApplyTaxaToFields(fields, resolvedTaxa);
+                    }
+
+                    var sdkItem = BuildSdkItem(fields);
                     var created = await client.CreateItem<SdkItem>(BuildCreateArgs(relatedCollection.ContentType, sdkItem, false));
 
                     if (created == null)
@@ -644,12 +789,12 @@ internal class Program
             {
                 if (children.Count > 0)
                 {
-                    await CreateChildItemsForParentAsync(client, relatedItem.Id, children, publishItems);
+                    await CreateChildItemsForParentAsync(client, relatedItem.Id, children, publishItems, taxonomyProcessor);
                 }
 
                 if (nestedRelated.Count > 0)
                 {
-                    await CreateRelatedItemsForParentAsync(client, relatedCollection.ContentType, relatedItem.Id, nestedRelated, publishItems);
+                    await CreateRelatedItemsForParentAsync(client, relatedCollection.ContentType, relatedItem.Id, nestedRelated, publishItems, taxonomyProcessor);
                 }
             }
 
@@ -678,6 +823,49 @@ internal class Program
         }
 
         ConsoleHelper.WriteSuccess($"Finished processing all {relatedCollections.Count} related collection(s) for '{parentId}'");
+    }
+
+    // Resolves all TaxonFieldPlan entries on an item plan into a map of fieldName → Guid[].
+    // Taxon IDs are obtained from the TaxonomyProcessor (resolve-or-create with caching).
+    private static async Task<Dictionary<string, Guid[]>> ResolveTaxaAsync(
+        List<TaxonFieldPlan> taxonFields,
+        TaxonomyProcessor taxonomyProcessor)
+    {
+        var result = new Dictionary<string, Guid[]>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var plan in taxonFields)
+        {
+            try
+            {
+                var ids = await taxonomyProcessor.ResolveOrCreateTaxaAsync(plan.TaxonomyName, plan.TaxonTitles);
+                if (ids.Length > 0)
+                {
+                    result[plan.FieldName] = ids;
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleHelper.WriteError($"Failed resolving taxa for field '{plan.FieldName}' in taxonomy '{plan.TaxonomyName}': {ex.Message}");
+                throw;
+            }
+        }
+
+        return result;
+    }
+
+    // Stamps resolved taxon Guid[] values onto the JsonObject fields before BuildSdkItem is called.
+    private static void ApplyTaxaToFields(JsonObject fields, Dictionary<string, Guid[]> resolvedTaxa)
+    {
+        foreach (var (fieldName, ids) in resolvedTaxa)
+        {
+            var jsonArray = new JsonArray();
+            foreach (var id in ids)
+            {
+                jsonArray.Add(id.ToString());
+            }
+
+            fields[fieldName] = jsonArray;
+        }
     }
 
     private static CreateArgs BuildCreateArgs(string contentType, SdkItem data, bool publishItems)
@@ -778,11 +966,13 @@ internal class Program
         };
     }
 
-    private sealed record ImportPlan(List<TopLevelTypePlan> TopLevelTypes, bool HasChildren, bool HasRelated);
+    private sealed record ImportPlan(List<TopLevelTypePlan> TopLevelTypes, bool HasChildren, bool HasRelated, bool HasTaxa);
     private sealed record TopLevelTypePlan(string ContentType, List<ImportItemPlan> Items);
-    private sealed record ImportItemPlan(JsonObject Fields, List<ChildCollectionPlan> ChildCollections, List<RelatedCollectionPlan> RelatedCollections);
+    private sealed record ImportItemPlan(JsonObject Fields, List<ChildCollectionPlan> ChildCollections, List<RelatedCollectionPlan> RelatedCollections, List<TaxonFieldPlan> TaxonFields);
     private sealed record ChildCollectionPlan(string ContentType, List<ImportItemPlan> Items);
     // RelationFieldName = the Sitefinity relationship field name (text after "Related_" prefix)
     private sealed record RelatedCollectionPlan(string RelationFieldName, string ContentType, List<ImportItemPlan> Items);
+    // FieldName = SdkItem field to set (text after "Taxon_" prefix); TaxonomyName = taxonomy to query/create within
+    private sealed record TaxonFieldPlan(string FieldName, string TaxonomyName, List<string> TaxonTitles);
     private sealed record CreatedParentItem(string ContentType, string Id, List<ChildCollectionPlan> ChildCollections, List<RelatedCollectionPlan> RelatedCollections);
 }
